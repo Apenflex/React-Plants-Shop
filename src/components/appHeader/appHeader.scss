@@ -1,0 +1,32 @@
+@import '../../style/variables.scss';
+
+.app-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95px;
+    .app-header-logo {
+        display: flex;
+        align-items: center;
+        width: 160px;
+        height: 40px;
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+    .app-header-menu {
+        display: flex;
+        align-items: center;
+        a {
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0 20px;
+            &:hover {
+                color: $brand-color;
+                transition: color 0.3s ease-in-out;
+            }
+        }
+    }
+}
