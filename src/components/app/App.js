@@ -1,11 +1,11 @@
-import AppHeader from "../appHeader/AppHeader";
+import MainPage from "../pages/mainPage/MainPage";
 
 
 
 function App() {
   return (
     <div className="App">
-      <AppHeader />
+      <MainPage />
     </div>
   );
 }

@@ -117,6 +117,7 @@
 }
 .hamburger.is-active:hover {
     opacity: 0.7;
+    position: fixed;
 }
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,

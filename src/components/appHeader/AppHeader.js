@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import './appHeader.scss'
-
 import logoHeader from '../../resources/img/logo/logo_header.svg'
+
+import './appHeader.scss'
 
 const AppHeader = () => {
     const [menuOpen, setMenuOpen] = useState(false);
