@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import logoHeader from '../../resources/img/logo/logo_header.svg'
 
@@ -23,14 +24,15 @@ const AppHeader = () => {
             <div className="container">
                 <div className="app-header-wrapper">
                     <div className={logoClass}>
-                        <a href="/">
+                        <Link to="/">
                             <img src={logoHeader} alt="company logo about plants" />
-                        </a>
+                        </Link>
                     </div>
                     
                     <nav className={menuClass}>
-                        <a href="/" onClick={onLinkClick}>About us</a>
+                        <a href="/about" onClick={onLinkClick}>About us</a>
                         <a href="/" onClick={onLinkClick}>Plants</a>
+                        <Link to="/blog" onClick={onLinkClick}>Blog</Link>
                         <a href="/" onClick={onLinkClick}>Pricing</a>
                         <a href="/" onClick={onLinkClick}>Testimonials</a>
                         <a href="/" onClick={onLinkClick}>Contact us</a>

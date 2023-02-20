@@ -1,14 +1,51 @@
+import { Link } from 'react-router-dom';
+
 import AppHeader from '../../appHeader/AppHeader';
 import AppFooter from '../../appFooter/AppFooter';
-
-import './mainPage.scss';
+import UseArticles from '../../../services/UseArticles';
+import ScrollUp from '../../scrollUp/ScrollUp';
 
 import featureImg from '../../../resources/img/feature-section-bg-min.png';
 import featuresIcon1 from '../../../resources/img/features-icon-1.svg';
 import featuresIcon2 from '../../../resources/img/features-icon-2.svg';
 import featuresIcon3 from '../../../resources/img/features-icon-3.svg';
-const MainPage = () => {
 
+import './mainPage.scss';
+
+const MainPage = () => {
+    const { articles } = UseArticles();
+
+    function renderItems(arr) {
+        const items = arr.slice(0, 3).map((item, i) => {
+            if (item.descr.length > 130) {
+                item.descr = item.descr.slice(0, 130) + '...';
+            }
+
+            return (
+                <div key={item.title}>  
+                    <Link
+                        to={{
+                            pathname: `/blog/${item.title.replace(/\s+/g, '-')}`,
+                            state: { item },
+                        }}
+                        className="blog__content-item">
+                        <div className="blog__content-item-img" >
+                            <img src={item.img} alt="blog" loading='lazy'/>
+                        </div>
+                        <div className="blog__content-item-content">
+                            <span className="blog__content-item-content-date">{item.date}</span>
+                            <h3 className="blog__content-item-content-title">{item.title}</h3>
+                            <div className="blog__content-item-content-descr">
+                                {item.descr}
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            )
+        });
+        return items;
+    }
+    const items = renderItems(articles);
 
     return (
         <>
@@ -83,7 +120,23 @@ const MainPage = () => {
                         </div>
                     </div>
             </section>
-            
+            <section className="blog">
+                <div className="container">
+                    <div className="blog-header">
+                        <span className="blog-header__name">ARTICLES</span>
+                        <h2 className="blog-header__title">Blog</h2>
+                        <div className="blog-header__descr">
+                            We often share useful information on cultivating
+                            and caring for indoor and outdoor plants. Check out our
+                            latest blog posts!
+                        </div>
+                    </div>
+                    <div className="blog__content">
+                        {items}
+                    </div>
+                </div>
+            </section>
+            <ScrollUp />
             <AppFooter />
         </>
     )

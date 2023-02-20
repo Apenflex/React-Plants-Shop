@@ -7,13 +7,13 @@ const AppFooter = () => {
 
     return (
         <>
-            <footer class="footer">
-                <div class="container">
-                    <div class="footer_items">
-                        <a href="/" class="footer_links-logo">
+            <footer className="footer">
+                <div className="container">
+                    <div className="footer_items">
+                        <a href="/" className="footer_links-logo">
                             <img src={LogoFooter} alt="logo company"/>
                         </a>
-                        <div class="footer_links">
+                        <div className="footer_links">
                             <a href="/">About us</a>
                             <a href="/">Plants</a>
                             <a href="/">Pricing</a>
@@ -21,9 +21,9 @@ const AppFooter = () => {
                             <a href="/">Contact us</a>
                         </div>
                     </div>
-                    <div class="footer_rights">
-                        <div class="rights-text">© Created by</div>
-                        <div class="rights-text">All rights Reserved</div>
+                    <div className="footer_rights">
+                        <div className="rights-text">© Created by</div>
+                        <div className="rights-text">All rights Reserved</div>
                     </div>
                 </div>
             </footer>

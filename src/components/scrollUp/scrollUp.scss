@@ -1,0 +1,26 @@
+@import '../../style/variables.scss';
+.scrollUp {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    fill: $dark-shade-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s;
+}
+.scrollUp:hover, .scrollUp:hover path {
+    fill: $brand-color;
+    color: #fff;
+    transition: all 0.1s;
+}
+// .scrollUp path {
+//     color: #fff;
+//     font-size: 21px;
+// }
