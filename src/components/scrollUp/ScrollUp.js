@@ -7,7 +7,7 @@ const ScrollButton = () => {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.scrollY > 1000) {
+            if (window.scrollY > 900) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AppHeader from '../../appHeader/AppHeader';
 import AppFooter from '../../appFooter/AppFooter';
 import UseArticles from '../../../services/UseArticles';
-import ScrollUp from '../../scrollUp/ScrollUp';
+
 
 import featureImg from '../../../resources/img/feature-section-bg-min.png';
 import featuresIcon1 from '../../../resources/img/features-icon-1.svg';
@@ -136,7 +136,6 @@ const MainPage = () => {
                     </div>
                 </div>
             </section>
-            <ScrollUp />
             <AppFooter />
         </>
     )

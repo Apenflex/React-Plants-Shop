@@ -1,9 +1,20 @@
+import { Navigation, A11y, Autoplay } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 import AppHeader from '../../appHeader/AppHeader'
 import AppFooter from '../../appFooter/AppFooter'
 
-
 import AboutImg from '../../../resources/img/section_about-img-min.png'
+import CarouselIcon1 from '../../../resources/img/icons/consultations.svg'
+import CarouselIcon2 from '../../../resources/img/icons/plant_food.svg'
+import CarouselIcon3 from '../../../resources/img/icons/plants_for_garden.svg'
+import CarouselIcon4 from '../../../resources/img/icons/plants_for_home.svg'
+import CarouselIcon5 from '../../../resources/img/icons/sale_of_flowerpot.svg'
+import CarouselIcon6 from '../../../resources/img/icons/soil_for_plants.svg'
 
 import './aboutPage.scss'
 
@@ -42,9 +53,164 @@ const AboutPage = () => {
                     </div>
                 </div>
             </section>
+            <section className="carousel">
+                {/* <div className="container"> */}
+                    <MySwiper />
+                {/* </div> */}
+            </section>
             <AppFooter />
         </>
     )
+}
+
+const MySwiper = () => {
+    return (
+        <Swiper
+            // install Swiper modules
+            modules={[Navigation, A11y, Autoplay]}
+            spaceBetween={1}
+            slidesPerView={4}
+            breakpoints={{
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                650: {
+                    slidesPerView: 2,
+                    spaceBetween: 5,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 0,
+                },
+            }}
+            // loop={true}
+            rewind={true}
+            // autoplay={{
+            //     delay: 2000,
+            //     pauseOnMouseEnter: true,
+            // }}
+            navigation
+            // pagination={{ clickable: true }}
+            // scrollbar={{ draggable: true }}
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
+        >
+            
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon1} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Consultations
+                        </div>
+                        <div className="carousel_item-descr">
+                            We not only sell plants and everything related
+                            to them but are also ready to answer any of your
+                            questions! Contact us to select the best plant!
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon2} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Plant Food
+                        </div>
+                        <div className="carousel_item-descr">
+                            We offer everything you need to care for plants.
+                            Here you'll find a wide selection of fertilizers and
+                            medicinal products to combat flower diseases.
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon3} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Plants for Garden
+                        </div>
+                        <div className="carousel_item-descr">
+                            Turn your yard into a colorful lawn! Here you will find 
+                            dozens of varieties of flowers, both in the form of seeds, 
+                            and already sprouted.  
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon4} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Plants for Home
+                        </div>
+                        <div className="carousel_item-descr">
+                            We offer a huge selection of flowers and evergreens
+                            that will be a joy to see for many years. A charming
+                            plant will be a great addition to the interior.
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon5} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Sale of Flowerpots
+                        </div>
+                        <div className="carousel_item-descr">
+                            Purchase flowerpots for plants of any type, from small flowers
+                            to huge palm trees. Our store offers only quality flowerpots
+                            from trusted manufacturers.
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon6} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Soil for Plants
+                        </div>
+                        <div className="carousel_item-descr">
+                            It's not easy to find quality soil in New York. We offer the
+                            best options for your plants. The soil we sell is decontaminated
+                            and enriched with nutrients.
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+        </Swiper>
+    );
 }
 
 export default AboutPage;

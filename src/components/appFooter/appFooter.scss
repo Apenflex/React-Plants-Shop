@@ -4,49 +4,38 @@
     background: $main-color;
     min-height: 195px;
     &_items {
-        align-items: center;
-        display: flex;
+        display: grid;
+        grid-template-columns: 160px 1fr;
         padding: 60px 0 30px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
+            display: flex;
             flex-direction: column-reverse;
+            padding: 30px 0 30px;
         }
     }
     &_links {
         display: flex;
-        flex-basis: 50%;
-        justify-content: space-between;
+        justify-content: end;
         align-items: center;
-        @media (max-width: 992px) {
-            flex-basis: 75%;
-        }
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
             flex-direction: column;
-            flex-basis: 100%;
             justify-content: center;
+            gap: 20px;
         }
         a {
             color: #fff;
             font-size: 17px;
             font-weight: 400;
-            @media (max-width: 767px) {
-                margin-bottom: 25px;
-            }
+            padding: 0 18px;
             &:hover {
                 color: $brand-color;
                 transition: 0.4s;
             }
         }
         &-logo {
-            display: flex;
-            flex-basis: 50%;
-            @media (max-width: 767px) {
-                flex-basis: 100%;
-                justify-content: center;
-            }
-        
-            @media (max-width: 992px) {
-                flex-basis: 25%;
+            @media (max-width: 576px) {
+                margin: 20px auto 0;
             }
             img {
                 width: 160px;

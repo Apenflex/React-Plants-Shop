@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+
+import ScrollUp from '../scrollUp/ScrollUp';
 
 import LogoFooter from '../../resources/img/logo/logo_footer.svg';
 
@@ -10,13 +13,14 @@ const AppFooter = () => {
             <footer className="footer">
                 <div className="container">
                     <div className="footer_items">
-                        <a href="/" className="footer_links-logo">
+                        <Link to="/" className="footer_links-logo">
                             <img src={LogoFooter} alt="logo company"/>
-                        </a>
+                        </Link>
                         <div className="footer_links">
-                            <a href="/">About us</a>
+                            <Link to="/about/">About us</Link>
                             <a href="/">Plants</a>
-                            <a href="/">Pricing</a>
+                            <Link to="/blog/">Blog</Link>
+                            <Link to="/pricing/">Pricing</Link>
                             <a href="/">Testmonials</a>
                             <a href="/">Contact us</a>
                         </div>
@@ -27,6 +31,7 @@ const AppFooter = () => {
                     </div>
                 </div>
             </footer>
+            <ScrollUp />
         </>
     )
 }

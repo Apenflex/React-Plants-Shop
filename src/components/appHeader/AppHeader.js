@@ -30,10 +30,10 @@ const AppHeader = () => {
                     </div>
                     
                     <nav className={menuClass}>
-                        <a href="/about" onClick={onLinkClick}>About us</a>
+                        <Link to="/about/" onClick={onLinkClick}>About us</Link>
                         <a href="/" onClick={onLinkClick}>Plants</a>
-                        <Link to="/blog" onClick={onLinkClick}>Blog</Link>
-                        <a href="/" onClick={onLinkClick}>Pricing</a>
+                        <Link to="/blog/" onClick={onLinkClick}>Blog</Link>
+                        <Link to="/pricing/" onClick={onLinkClick}>Pricing</Link>
                         <a href="/" onClick={onLinkClick}>Testimonials</a>
                         <a href="/" onClick={onLinkClick}>Contact us</a>
                     </nav>
