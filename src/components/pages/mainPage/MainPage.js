@@ -6,9 +6,9 @@ import UseArticles from '../../../services/UseArticles';
 
 
 import featureImg from '../../../resources/img/feature-section-bg-min.png';
-import featuresIcon1 from '../../../resources/img/features-icon-1.svg';
-import featuresIcon2 from '../../../resources/img/features-icon-2.svg';
-import featuresIcon3 from '../../../resources/img/features-icon-3.svg';
+import featuresIcon1 from '../../../resources/img/icons/features-icon-1.svg';
+import featuresIcon2 from '../../../resources/img/icons/features-icon-2.svg';
+import featuresIcon3 from '../../../resources/img/icons/features-icon-3.svg';
 
 import './mainPage.scss';
 
