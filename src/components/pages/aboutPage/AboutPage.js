@@ -53,6 +53,44 @@ const AboutPage = () => {
                     </div>
                 </div>
             </section>
+            <section className="about_page_divider">
+                <div className="container">
+                    <div className="about_page_divider_wrapper">
+                        <div className="about_page_divider_wrapper-item">
+                            <div className="about_page_divider_wrapper-item-title">
+                                120+
+                            </div>
+                            <div className="about_page_divider_wrapper-item-descr">
+                                FLOWERS
+                            </div>
+                        </div>
+                        <div className="about_page_divider_wrapper-item">
+                            <div className="about_page_divider_wrapper-item-title">
+                                239+
+                            </div>
+                            <div className="about_page_divider_wrapper-item-descr">
+                                EVERGREENS
+                            </div>
+                        </div>
+                        <div className="about_page_divider_wrapper-item">
+                            <div className="about_page_divider_wrapper-item-title">
+                                148+
+                            </div>
+                            <div className="about_page_divider_wrapper-item-descr">
+                                SUCCULENTS
+                            </div>
+                        </div>
+                        <div className="about_page_divider_wrapper-item">
+                            <div className="about_page_divider_wrapper-item-title">
+                                150+
+                            </div>
+                            <div className="about_page_divider_wrapper-item-descr">
+                                PALM TREES
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section className="carousel">
                 {/* <div className="container"> */}
                     <MySwiper />

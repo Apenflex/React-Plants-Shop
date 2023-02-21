@@ -1,0 +1,117 @@
+@import '../../../style/variables.scss';
+
+.pricing {
+    min-height: 770px;
+    padding: 70px 0 60px;
+    &-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+        margin: auto;
+        &__name {
+            color: $brand-color;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2.8px;
+            line-height: 20px;
+            position: relative;
+            padding-left: 25px;
+            &::after {
+                content: '';
+                position: absolute;
+                left: 100px;
+                top: 10px;
+                width: 17px;
+                height: 2px;
+                background-color: $brand-color;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 10px;
+                width: 17px;
+                height: 2px;
+                background-color: $brand-color;
+            } 
+        }
+        &__title {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 50px;
+            margin: 20px 0;
+        }
+        &__descr {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 28px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(240px, 1fr));
+        margin-top: 50px;
+        @media screen and (max-width: 1160px) {
+            grid-template-columns: repeat(2, minmax(260px, 1fr));
+            justify-items: center;
+            row-gap: 30px;
+        }
+        @media screen and (max-width: 578px) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+        &_card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 270px;
+            max-width: 270px;
+            height: 390px;
+            box-shadow: 0 0 10px rgb(13 60 0 / 20%);
+            border-radius: 4px;
+            border-top: 4px solid $brand-color;
+            padding: 45px 5px;
+            &-uptitle {
+                font-size: 22px;
+                font-weight: 900;
+                line-height: 30px;
+                span {
+                    color: $brand-color;
+                }
+            }
+            &-title {
+                font-size: 36px;
+                font-weight: 900;
+                line-height: 47px;
+                margin: 20px 0;
+            }
+            &-descr {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                span {
+                    font-size: 17px;
+                    font-weight: 400;
+                    line-height: 30px;
+                    letter-spacing: 0.85px;
+                    color: $ligth-text-color;
+                }
+            }
+            &-btn {
+                margin-top: 40px;
+                background-color: $brand-color;
+                color: #fff;
+                &:hover {
+                    background-color: $main-color;
+                    color: #fff;
+                    transition: all 0.4s;
+                }
+            }
+        }
+    }
+}
