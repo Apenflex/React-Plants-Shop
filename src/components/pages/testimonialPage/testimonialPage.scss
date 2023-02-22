@@ -1,0 +1,130 @@
+@import '../../../style/variables.scss';
+
+.testimonial {
+    min-height: 970px;
+    display: flex;
+    &__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @media screen and (max-width: 1060px) {
+            grid-template-columns: 60% 1fr;
+        }
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+    &__left-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 35px 60px 50px;
+        @media screen and (max-width: 768px) {
+            padding: 10px 15px;
+        }
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        &-name {
+            color: $brand-color;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2.8px;
+            line-height: 20px;
+            position: relative;
+            padding: 0 25px;
+            &::after {
+                content: '';
+                position: absolute;
+                left: 135px;
+                top: 10px;
+                width: 17px;
+                height: 2px;
+                background-color: $brand-color;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 10px;
+                width: 17px;
+                height: 2px;
+                background-color: $brand-color;
+            } 
+        }
+        &-title {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 50px;
+            color: $main-color;
+            margin-top: 10px;
+        }
+        &-descr {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 28px;
+            margin-top: 30px;
+        }
+        &-slider {
+            display: flex;
+            height: 680px;
+            flex-direction: column;
+            margin-top: 60px;
+            &-item {
+                display: grid;
+                grid-template-columns: 130px 1fr;
+                justify-items: center;
+                @media screen and (max-width: 576px) {
+                    grid-template-columns: 80px 1fr;
+                }
+                &-img {
+                    width: 120px;
+                    height: 120px;
+                    @media screen and (max-width: 576px) {
+                        width: 80px;
+                        height: 80px;
+                    }
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+                &-content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    padding: 0 10px;
+                    &-name {
+                        color: $main-color;
+                        font-size: 24px;
+                        font-weight: 900;
+                        line-height: 43px;
+                    }
+                    &-feedback {
+                        color: $ligth-text-color;
+                        font-size: 17px;
+                        font-weight: 400;
+                        line-height: 25px;
+                        letter-spacing: 0.85px;
+                    }
+                }
+            }
+        }
+    }
+    &__right-block {
+        @media screen and (max-width: 768px) {
+            padding: 30px 10px;
+        }
+       img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+       } 
+    }
+}

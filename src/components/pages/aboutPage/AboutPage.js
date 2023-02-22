@@ -1,7 +1,5 @@
-import { Navigation, A11y, Autoplay } from 'swiper';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -101,13 +99,24 @@ const AboutPage = () => {
     )
 }
 
+SwiperCore.use([Navigation, Autoplay]);
+
 const MySwiper = () => {
     return (
         <Swiper
-            // install Swiper modules
-            modules={[Navigation, A11y, Autoplay]}
-            spaceBetween={1}
+            direction={'horizontal'}
             slidesPerView={4}
+            spaceBetween={1}
+            grabCursor={true}
+            loop={true}
+            loopedSlides={3}
+            speed={1400}
+            autoplay={{
+                delay: 2100,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            }}
+            navigation
             breakpoints={{
                 320: {
                     slidesPerView: 1,
@@ -126,17 +135,6 @@ const MySwiper = () => {
                     spaceBetween: 0,
                 },
             }}
-            // loop={true}
-            rewind={true}
-            // autoplay={{
-            //     delay: 2000,
-            //     pauseOnMouseEnter: true,
-            // }}
-            navigation
-            // pagination={{ clickable: true }}
-            // scrollbar={{ draggable: true }}
-            // onSwiper={(swiper) => console.log(swiper)}
-            // onSlideChange={() => console.log('slide change')}
         >
             
             <SwiperSlide>
@@ -224,6 +222,24 @@ const MySwiper = () => {
                             Purchase flowerpots for plants of any type, from small flowers
                             to huge palm trees. Our store offers only quality flowerpots
                             from trusted manufacturers.
+                        </div>
+                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide>
+                <div className="carousel_wrapper_item">
+                    <div className="carousel_item">
+                        <div className="carousel_item-img">
+                            <img src={CarouselIcon6} alt="about" />
+                        </div>
+                        <div className="carousel_item-title">
+                            Soil for Plants
+                        </div>
+                        <div className="carousel_item-descr">
+                            It's not easy to find quality soil in New York. We offer the
+                            best options for your plants. The soil we sell is decontaminated
+                            and enriched with nutrients.
                         </div>
                         <a href="/" className="carousel_item-btn btn_small">learn more</a>
                     </div>

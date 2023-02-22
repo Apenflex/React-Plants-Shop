@@ -21,7 +21,7 @@ const AppFooter = () => {
                             <a href="/">Plants</a>
                             <Link to="/blog/">Blog</Link>
                             <Link to="/pricing/">Pricing</Link>
-                            <a href="/">Testmonials</a>
+                            <Link to="/testimonials/">Testmonials</Link>
                             <a href="/">Contact us</a>
                         </div>
                     </div>

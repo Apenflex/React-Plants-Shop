@@ -5,6 +5,7 @@ import MainPage from "../pages/mainPage/MainPage";
 import AboutPage from "../pages/aboutPage/AboutPage";
 import BlogPage from "../pages/blogPage/BlogPage";
 import Pricing from "../pages/pricingPage/PricingPage";
+import TestimonialPage from "../pages/testimonialPage/TestimonialPage";
 import SingleBlogArticle from "../pages/SingleBlogArticle";
 
 
@@ -19,6 +20,7 @@ const App = () => {
                   <Route path='/blog/' element={<BlogPage />} />
                   <Route path='/blog/:title' element={<SingleBlogArticle />} />
                   <Route path='/pricing/' element={<Pricing />} />
+                  <Route path='/testimonials/' element={<TestimonialPage />} />
                </Routes>
             </main>
          </div>

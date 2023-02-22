@@ -34,7 +34,7 @@ const AppHeader = () => {
                         <a href="/" onClick={onLinkClick}>Plants</a>
                         <Link to="/blog/" onClick={onLinkClick}>Blog</Link>
                         <Link to="/pricing/" onClick={onLinkClick}>Pricing</Link>
-                        <a href="/" onClick={onLinkClick}>Testimonials</a>
+                        <Link to="/testimonials/" onClick={onLinkClick}>Testimonials</Link>
                         <a href="/" onClick={onLinkClick}>Contact us</a>
                     </nav>
                 </div>
