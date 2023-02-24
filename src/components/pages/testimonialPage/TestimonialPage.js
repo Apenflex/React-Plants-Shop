@@ -36,6 +36,20 @@ const TestimonialPage = () => {
                     </div>
                 </div>
             </section>
+            <section className="testimonial_divider">
+                <div className="container">
+                    <div className="testimonial_divider_wrapper">
+                        <div className="testimonial_divider_wrapper-item">
+                            <div className="testimonial_divider_wrapper-item-title">
+                                Want to Visit Our Greenhouse?
+                            </div>
+                            <div className="testimonial_divider_wrapper-item-descr">
+                                Call us <span><a href="tel:+1(234)5678900">+1 (234) 567 89 00</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <AppFooter />
         </>
     )
@@ -52,6 +66,7 @@ const TestimonialSwiper = () => {
             grabCursor={true}
             loop={true}
             loopedSlides={2}
+            speed={1300}
             autoplay={{
                 delay: 8000,
                 disableOnInteraction: false,

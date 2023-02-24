@@ -31,11 +31,11 @@ const AppHeader = () => {
                     
                     <nav className={menuClass}>
                         <Link to="/about/" onClick={onLinkClick}>About us</Link>
-                        <a href="/" onClick={onLinkClick}>Plants</a>
                         <Link to="/blog/" onClick={onLinkClick}>Blog</Link>
+                        <Link to="/shop/" onClick={onLinkClick}>Shop</Link>
                         <Link to="/pricing/" onClick={onLinkClick}>Pricing</Link>
                         <Link to="/testimonials/" onClick={onLinkClick}>Testimonials</Link>
-                        <a href="/" onClick={onLinkClick}>Contact us</a>
+                        <Link to="/contact/" onClick={onLinkClick}>Contact us</Link>
                     </nav>
                 </div>
                 <div className={hamburgerClass} onClick={onHamburgerClick}>

@@ -18,11 +18,11 @@ const AppFooter = () => {
                         </Link>
                         <div className="footer_links">
                             <Link to="/about/">About us</Link>
-                            <a href="/">Plants</a>
                             <Link to="/blog/">Blog</Link>
+                            <Link to="/shop/">Shop</Link>
                             <Link to="/pricing/">Pricing</Link>
                             <Link to="/testimonials/">Testmonials</Link>
-                            <a href="/">Contact us</a>
+                            <Link to="/contact/">Contact us</Link>
                         </div>
                     </div>
                     <div className="footer_rights">

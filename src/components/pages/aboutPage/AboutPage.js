@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
@@ -41,7 +42,7 @@ const AboutPage = () => {
                                 <div className="about_page_left_list-item">LARGE SELECTION OF DIFFERENT PLANTS</div>
                                 <div className="about_page_left_list-item">RELATED SERVICES AND HOME GOODS</div>
                             </div>
-                            <a href="/" className="about_page_left-button btn_large">BROWSE PLANTS</a>
+                            <Link to="/shop/" className="about_page_left-button btn_large">BROWSE PLANTS</Link>
                         </div>
                         <div className="about_page_right">
                             <div className="about_page_right-img">
@@ -151,7 +152,7 @@ const MySwiper = () => {
                             to them but are also ready to answer any of your
                             questions! Contact us to select the best plant!
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -169,7 +170,7 @@ const MySwiper = () => {
                             Here you'll find a wide selection of fertilizers and
                             medicinal products to combat flower diseases.
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -187,7 +188,7 @@ const MySwiper = () => {
                             dozens of varieties of flowers, both in the form of seeds, 
                             and already sprouted.  
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -205,7 +206,7 @@ const MySwiper = () => {
                             that will be a joy to see for many years. A charming
                             plant will be a great addition to the interior.
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -223,7 +224,7 @@ const MySwiper = () => {
                             to huge palm trees. Our store offers only quality flowerpots
                             from trusted manufacturers.
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -241,7 +242,7 @@ const MySwiper = () => {
                             best options for your plants. The soil we sell is decontaminated
                             and enriched with nutrients.
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -259,7 +260,7 @@ const MySwiper = () => {
                             best options for your plants. The soil we sell is decontaminated
                             and enriched with nutrients.
                         </div>
-                        <a href="/" className="carousel_item-btn btn_small">learn more</a>
+                        <Link to="/contact/" className="carousel_item-btn btn_small">learn more</Link>
                     </div>
                 </div>
             </SwiperSlide>

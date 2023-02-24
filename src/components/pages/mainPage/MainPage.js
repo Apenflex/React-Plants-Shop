@@ -57,8 +57,8 @@ const MainPage = () => {
                         <h1 className="plantland__title">Make Your Home Green</h1>
                         <div className="plantland__descr">Check out our store in New York with the best indoor & outdoor plants that are suitable for growing exactly in your conditions.</div>
                         <div className="plantland__buttons">
-                            <a href="/" className="plantland__buttons-best btn_large">BEST PLANTS</a>
-                            <a href="/" className="plantland__buttons-learn btn_large">LEARN MORE</a>
+                            <Link to="/shop/" className="plantland__buttons-best btn_large">BEST PLANTS</Link>
+                            <Link to="/about/" className="plantland__buttons-learn btn_large">LEARN MORE</Link>
                         </div>
                     </div>
                 </div>

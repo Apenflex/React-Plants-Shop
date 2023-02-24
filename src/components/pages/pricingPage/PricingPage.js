@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 import AppHeader from "../../appHeader/AppHeader"
 import AppFooter from "../../appFooter/AppFooter"
+import Form from "../../form/Form"
 
 import TabIndoorImg1 from '../../../resources/img/tab_indoor-1-min.png'
 import TabIndoorImg2 from '../../../resources/img/tab_indoor-2-min.png'
@@ -14,13 +15,26 @@ import TabOutdoorImg4 from '../../../resources/img/tab_outdoor-4-min.png'
 
 import './pricingPage.scss'
 
+
+
 const PricingPage = () => {
 
     const [activeTab, setActiveTab] = useState('indoor');
-    // console.log(activeTab);
+    
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleCustomOrderClick = (e) => {
+        e.preventDefault();
+        setIsModalOpen(true);
+    };
+
+    // const handleCloseModalClick = () => {
+    //     setIsModalOpen(false);
+    // };
 
     return (
         <>
@@ -164,7 +178,7 @@ const PricingPage = () => {
                     </div>
                 </div>
             </section>
-            <section className="pricing">
+                <section className="pricing">
                 <div className="container">
                     <div className="pricing-header">
                         <span className="pricing-header__name">PRICING</span>
@@ -186,7 +200,12 @@ const PricingPage = () => {
                                 <span>Bryophyllum</span>
                                 <span>Philodendron</span>
                             </div>
-                            <a href="/" className="pricing__content_card-btn btn_small">CUSTOM ORDER</a>
+                            <a
+                                href="/"
+                                className="pricing__content_card-btn btn_small"
+                                onClick={handleCustomOrderClick}>
+                                CUSTOM ORDER
+                            </a>
                         </div>
                         <div className="pricing__content_card">
                             <div className="pricing__content_card-uptitle">
@@ -231,8 +250,15 @@ const PricingPage = () => {
                             <a href="/" className="pricing__content_card-btn btn_small">CUSTOM ORDER</a>
                         </div>
                     </div>
+                    {isModalOpen && (
+                        <div className="modal">
+                            <div className="modal__content">
+                                <Form onSubmit={() => setIsModalOpen(false)} />
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </section>
+                </section>
             <AppFooter />
         </>
     )

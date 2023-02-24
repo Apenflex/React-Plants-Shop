@@ -13,6 +13,57 @@
             grid-template-columns: 1fr;
         }
     }
+    &_divider {
+        display: flex;
+        align-items: center;
+        min-height: 310px;
+        padding: 120px 0;
+        background: url(../../../resources/img/section-divider.png), rgb(13, 60, 0);
+        background-image: linear-gradient(
+        rgba(13, 60, 0, 0.95), 
+        rgba(13, 60, 0, 0.95), 
+        rgba(13, 60, 0, 0.95)), 
+        url(../../../resources/img/section-divider.png);
+        @media screen and (max-width: 900px) {
+            padding: 0;
+        }
+        &_wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            &-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                &-title {
+                    color: #fff;
+                    font-size: 74px;
+                    font-weight: 700;
+                    line-height: 81px;
+                    text-align: center;
+                    @media screen and (max-width: 768px) {
+                        font-size: 45px;
+                    }
+                }
+                &-descr {
+                    color: #fff;
+                    font-size: 36px;
+                    font-weight: 900;
+                    line-height: 47px;
+                    margin-top: 15px;
+                    @media screen and (max-width: 768px) {
+                        font-size: 24px;
+                    }
+                    a {
+                        color: rgb(236, 210, 160);
+                        &:hover {
+                            color: rgb(243, 208, 142);
+                            transition: color 0.3s;
+                        }
+                    }
+                }
+            }
+        }
+    }
     &__left-block {
         display: flex;
         flex-direction: column;

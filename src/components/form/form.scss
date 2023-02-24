@@ -1,0 +1,157 @@
+@import '../../style/variables.scss';
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 10px rgb(13 60 0 / 20%);
+    border-radius: 4px;
+    border-top: 4px solid $brand-color;
+    padding: 60px 90px;
+    @media screen and (max-width: 992px) {
+        padding: 40px 45px;
+    }
+    @media screen and (max-width: 450px) {
+        padding: 10px 10px;
+    }
+    &-title {
+        color: $main_color;
+        font-size: 41px;
+        font-weight: 700;
+        line-height: 50px;
+    }
+    &-descr {
+        color: $ligth-text-color;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0.85px;
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+        width: 100%;
+    }
+    &-group {
+        width: 100%;
+        input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid $ligth-text-color;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: 0.85px;
+            color: $ligth-text-color;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+            &:focus {
+                border: 2px solid $brand-color;
+            }
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            border: 1px solid $ligth-text-color;
+            border-radius: 40px;
+            padding: 7px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: 0.85px;
+            color: $ligth-text-color;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+            // disable resize textarea and scroll
+            resize: none;
+            overflow: hidden;
+            &:focus {
+                border: 1px solid $brand-color;
+            }
+        }
+    }
+    &-btn {
+        width: 100%;
+        height: 44px;
+        border: none;
+        border-radius: 40px;
+        background-color: $brand-color;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0.85px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        &:hover {
+            background-color: $brand-color;
+        }
+    }
+}
+
+.ReactModal__Overlay {
+    top: 0;
+    left: 0;
+    right: 75px;
+    bottom: 0;
+    z-index: 11;
+}
+
+.ReactModal__Content {
+    top: 25% !important;
+    left: 37% !important;
+    width: 260px;
+    height: 250px;
+    @media screen and (max-width: 992px) {
+        left: 34% !important;
+    }
+    @media screen and (max-width: 700px) {
+        left: 30% !important;
+    }
+    @media screen and (max-width: 540px) {
+        left: 25% !important;
+    }
+    @media screen and (max-width: 450px) {
+        left: 19% !important;
+    }
+    &-Block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // gap: 20px;
+        &-img {
+            width: 40px;
+            height: 40px;
+        }
+        &-title {
+            color: $main_color;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 50px;
+        }
+        &-btn {
+            width: 130px;
+            height: 38px;
+            border: none;
+            border-radius: 40px;
+            background-color: $brand-color;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 20px;
+            letter-spacing: 0.85px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    }
+}
