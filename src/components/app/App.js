@@ -6,7 +6,7 @@ import BlogPage from "../pages/blogPage/BlogPage";
 import Pricing from "../pages/pricingPage/PricingPage";
 import TestimonialPage from "../pages/testimonialPage/TestimonialPage";
 import ContactPage from "../pages/contactPage/ContactPage";
-import SingleBlogArticle from "../pages/SingleBlogArticle";
+import SingleBlogArticle from "../pages/singleBlogArticle/SingleBlogArticle";
 
 const App = () => {
    return (
