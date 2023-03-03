@@ -1,7 +1,7 @@
 
 import AppHeader from '../../appHeader/AppHeader'
 import AppFooter from '../../appFooter/AppFooter'
-import Form from '../../form/Form'
+import Form from '../../contactForm/Form'
 
 import GoogleMap from '../../../resources/img/google_maps.png'
 

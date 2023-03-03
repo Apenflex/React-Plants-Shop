@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import useGoods from "../../../services/useGoods"
 import AppHeader from "../../appHeader/AppHeader"
 import AppFooter from "../../appFooter/AppFooter"
-import Form from "../../form/Form"
+import OrderForm from "../../orderForm/OrderForm"
 
 import shopIcon from '../../../resources/img/icons/basket-shopping-solid.svg'
 import deleteItemIcon from '../../../resources/img/icons/deleteItemIcon.svg'
@@ -11,36 +11,17 @@ import "./shopPage.scss"
 
 const ShopPage = () => {
     const { goods } = useGoods();
-    // it shows the cart icon when the user adds an item to the cart
+
     const [showCartIcon, setShowCartIcon] = useState(false);
-    // it stores the items added to the cart
+    const [isCartOpen, setIsCartOpen] = useState(false);
+
     const [cartItems, setCartItems] = useState([]);
     console.log(cartItems)
     const [quantity, setQuantity] = useState(0);
     // console.log(quantity);
-    
-    // const addToCart = (item) => {
-    //     console.log('render addToCart')
-    //     const updatedCartItems = updateCartItems(cartItems, item);
-    //     setCartItems(updatedCartItems);
-    //     setShowCartIcon(true);
-    //     setQuantity(quantity + 1);
-    // };
-    // const updateCartItems = (cartItems, item) => {
-    //     console.log('render updateCartItems')
-    //     // console.log(cartItems);
-    //     // console.log(item);
-    //     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-    //     if (existingItem) {
-    //         existingItem.quantity += 1;
-    //         return [...cartItems];
-    //     } else {
-    //         return [...cartItems, { ...item, quantity: 1 }];
-    //     }
-    // };
 
     const addToCart = (item) => {
-        console.log('render addToCart');
+        // console.log('render addToCart');
         const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
         if (existingItem) {
             existingItem.quantity += 1;
@@ -49,11 +30,9 @@ const ShopPage = () => {
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
         }
         setShowCartIcon(true);
-        setQuantity(quantity + 1);
+        // Розрахунок кількості товарів в корзині
+        setQuantity((prevQuantity) => prevQuantity + 1);
     };
-
-
-
 
     const removeFromCart = (item) => {
         const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
@@ -65,9 +44,12 @@ const ShopPage = () => {
             toggleCart();
         }
     };
-    
+
+    const calculateItemTotal = (item) => {
+        return (item.quantity * +item.price).toFixed(2);
+    };
+
     const calculateTotal = (cartItems) => {
-        console.log('render calculateTotal')
         const cartItemsArray = Object.values(cartItems);
         const total = cartItemsArray.reduce((acc, item) => {
             return acc + item.quantity * +item.price;
@@ -76,15 +58,19 @@ const ShopPage = () => {
     }
 
     const onInputButtonChange = (count, item) => {
-        console.log('render onInputButtonChange')
-        console.log(item)
+        // console.log('render onInputButtonChange')
+        console.log(item.quantity)
         switch (count) {
             case "increase":
-                setQuantity((prevQuantity) => prevQuantity + 1);
+                if (item.quantity < 100) {
+                    setQuantity((prevQuantity) => prevQuantity + 1);
+                    cartItems.find((cartItem) => cartItem.id === item.id).quantity += 1;
+                }
                 break;
             case "decrease":
-                if (quantity > 1) {
+                if (item.quantity > 1) {
                     setQuantity((prevQuantity) => prevQuantity - 1);
+                    cartItems.find((cartItem) => cartItem.id === item.id).quantity -= 1;
                 }
                 break;
             default:
@@ -92,16 +78,31 @@ const ShopPage = () => {
         }
     };
 
-    const onInputChange = (e) => {
-        setQuantity(parseInt(e.target.value));
+    const onInputChange = (e, item) => {
+        let newQuantity = parseInt(e.target.value);
+        console.log(newQuantity);
+        if (isNaN(newQuantity) || newQuantity < 1) {
+            newQuantity = 1; // or any default value
+        } else if (newQuantity > 100) {
+            newQuantity = 100; // or any max value you want
+        }
+        const updatedCartItems = cartItems.map((cartItem) => {
+            if (cartItem.id === item.id) {
+                return { ...cartItem, quantity: newQuantity };
+            } else {
+                return cartItem;
+            }
+        });
+        setQuantity((prevQuantity) => prevQuantity - item.quantity + newQuantity);
+        setCartItems(updatedCartItems);
     };
 
     const clearCart = () => {
         setCartItems([]);
         setShowCartIcon(false);
+        setQuantity(0);
     };
 
-    const [isCartOpen, setIsCartOpen] = useState(false);
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
     };
@@ -172,21 +173,21 @@ const ShopPage = () => {
                                                     <div className="modal-body-item-wrapper">
                                                         <div className="modal-body-item-count">
                                                             <input type="number" value={item.quantity}
-                                                                onChange={onInputChange} />
+                                                                onChange={(e) => onInputChange(e, item)} />
                                                             <div className="arrows">
-                                                                <div className="up" 
+                                                                <div className="up"
                                                                     onClick={() => onInputButtonChange('increase', item)}>
                                                                 </div>
-                                                                <div className="down" 
+                                                                <div className="down"
                                                                     onClick={() => onInputButtonChange('decrease', item)}>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="modal-body-item-price">
-                                                            ${item.price}
+                                                            ${calculateItemTotal(item)}
                                                         </div>
                                                         <div className="modal-body-item-delete">
-                                                            <div className="btn_delete" onClick={() => removeFromCart(item) }>
+                                                            <div className="btn_delete" onClick={() => removeFromCart(item)}>
                                                                 <img src={deleteItemIcon} alt="deleteItemIcon" />
                                                             </div>
                                                         </div>
@@ -201,10 +202,11 @@ const ShopPage = () => {
                                                     ${calculateTotal(cartItems)}
                                                 </div>
                                             </div>
-                                            <Form onSubmit={() => {
+                                            <OrderForm onSubmit={() => {
                                                 console.log(`Order is sent to server: ${JSON.stringify(cartItems)}`)
                                                 toggleCart()
-                                                clearCart()}} />
+                                                clearCart()
+                                            }} />
                                         </ul>
                                     </div>
                                 </div>

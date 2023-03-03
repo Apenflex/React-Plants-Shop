@@ -154,7 +154,7 @@
             &-count {
                 display: flex;
                 width: 90px;
-                height: 40px;
+                height: 37px;
                 border-radius: 30px;
                 border: 1px solid $ligth-text-color;
                 padding: 0 15px;
@@ -165,11 +165,11 @@
                 }
                 .arrows {
                     position: relative;
-                    padding-left: 6px;
+                    padding-left: 10px;
                     .up::before {
                         content: '';
                         position: absolute;
-                        top: 27%;
+                        top: 24%;
                         left: 50%;
                         transform: translate(-50%, -50%);
                         width: 0;
@@ -182,7 +182,7 @@
                     .down::before {
                         content: '';
                         position: absolute;
-                        bottom: 15%;
+                        bottom: 10%;
                         left: 50%;
                         transform: translate(-50%, -50%);
                         width: 0;
@@ -202,6 +202,7 @@
                 letter-spacing: 0.85px;
                 line-height: 25px;
                 margin: 0 25px;
+                width: 60px;
             }
             .btn_delete {
                 width: 17px;
@@ -233,12 +234,12 @@
     }
 }
 
-.contact-form {
-    padding: 5px 25px;
-}
-.contact-form-title {
-    display: none;
-}
-.contact-form-descr {
-    display: none;
-}
+// .contact-form {
+//     padding: 5px 25px;
+// }
+// .contact-form-title {
+//     display: none;
+// }
+// .contact-form-descr {
+//     display: none;
+// }
