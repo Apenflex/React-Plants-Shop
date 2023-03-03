@@ -16,3 +16,20 @@
     font-size: 11px;
     font-weight: 700;
 }
+.btn_buy {
+    color: #fff;
+    background-color: $brand-color;
+    border: 0;
+    width: 65px;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+        background-color: $main-color;
+        transition: background-color 0.3s ease-in-out;
+    }
+}
