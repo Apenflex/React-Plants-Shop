@@ -3,6 +3,9 @@
 .shop {
     min-height: 700px;
     padding: 20px 0 100px;
+    @media screen and (max-width: 600px) {
+        padding: 20px 0 40px;
+    }
     &-wrapper {
         display: grid;
         grid-template-columns: repeat(4, minmax(220px, 1fr));
@@ -56,6 +59,70 @@
             }
             &-btn {
                 margin-top: 10px;
+            }
+        }
+    }
+    &-pagination {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 50px;
+        @media screen and (max-width: 600px) {
+            grid-template-columns: 1fr;
+        }
+        .shop-per-page {
+            display: flex;
+            align-items: center;
+            @media screen and (max-width: 600px) {
+                justify-content: center;
+            }
+            &-title {
+                color: $ligth-text-color;
+                font-size: 16px;
+                font-weight: 400;
+                letter-spacing: 0.8px;
+                line-height: 25px;
+                margin-right: 10px;
+            }
+            select {
+                height: 28px;
+                border: 1px solid $ligth-text-color;
+                border-radius: 5px;
+                outline: none;
+                padding: 0 8px;
+                font-size: 16px;
+                font-weight: 400;
+                letter-spacing: 0.8px;
+                line-height: 25px;
+                color: $dark-shade-color;
+                cursor: pointer;
+            }
+        }
+        &-list {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            @media screen and (max-width: 600px) {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            .btn_prev, .btn_next {
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+            }
+            &-count {
+                cursor: pointer;
+                background-color: $brand-color;
+                border-radius: 5px;
+                width: 25px;
+                height: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 400;
             }
         }
     }
@@ -117,6 +184,9 @@
         align-items: center;
         height: 62px;
         padding: 16px;
+        @media screen and (max-width: 390px) {
+            padding: 10px;
+        }
         .btn_close {
             font-size: 44px;
             transform: rotate(45deg);
@@ -125,6 +195,12 @@
     }
     &-body {
         padding: 0 25px 20px;
+        @media screen and (max-width: 490px) {
+            padding: 0 15px 20px;
+        }
+        @media screen and (max-width: 390px) {
+            padding: 0 10px 20px;
+        }
         &-item {
             display: flex;
             justify-content: space-between;
@@ -153,7 +229,7 @@
             }
             &-count {
                 display: flex;
-                width: 90px;
+                width: 75px;
                 height: 37px;
                 border-radius: 30px;
                 border: 1px solid $ligth-text-color;
@@ -201,8 +277,11 @@
                 font-weight: 400;
                 letter-spacing: 0.85px;
                 line-height: 25px;
-                margin: 0 25px;
+                margin: 0 15px;
                 width: 60px;
+                @media screen and (max-width: 390px) {
+                    margin: 0 5px;
+                }
             }
             .btn_delete {
                 width: 17px;
@@ -233,13 +312,3 @@
         }
     }
 }
-
-// .contact-form {
-//     padding: 5px 25px;
-// }
-// .contact-form-title {
-//     display: none;
-// }
-// .contact-form-descr {
-//     display: none;
-// }

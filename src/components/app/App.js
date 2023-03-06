@@ -7,6 +7,7 @@ import SingleBlogArticle from "../pages/singleBlogArticle/SingleBlogArticle";
 import Pricing from "../pages/pricingPage/PricingPage";
 import TestimonialPage from "../pages/testimonialPage/TestimonialPage";
 import ShopPage from "../pages/shopPage/ShopPage";
+import SingleShopGood from "../pages/singleShopGood/SingleShopGood";
 import ContactPage from "../pages/contactPage/ContactPage";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
                   <Route path='/blog/' element={<BlogPage />} />
                   <Route path='/blog/:title' element={<SingleBlogArticle />} />
                   <Route path='/shop/' element={<ShopPage />} />
+                  <Route path='/shop/:name' element={<SingleShopGood />} />
                   <Route path='/pricing/' element={<Pricing />} />
                   <Route path='/testimonials/' element={<TestimonialPage />} />
                   <Route path='/contact/' element={<ContactPage />} />

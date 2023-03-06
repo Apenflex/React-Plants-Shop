@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 import useGoods from "../../../services/useGoods"
 import AppHeader from "../../appHeader/AppHeader"
@@ -7,6 +8,8 @@ import OrderForm from "../../orderForm/OrderForm"
 
 import shopIcon from '../../../resources/img/icons/basket-shopping-solid.svg'
 import deleteItemIcon from '../../../resources/img/icons/deleteItemIcon.svg'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import "./shopPage.scss"
 
 const ShopPage = () => {
@@ -111,22 +114,24 @@ const ShopPage = () => {
         const items = arr.map((item) => {
             return (
                 <div className="shop-wrapper-item" key={item.id}>
-                    <div className="shop-wrapper-item-img">
-                        <img src={item.img} alt={item.name} />
-                    </div>
-                    <div className="shop-wrapper-item-title">
-                        <h3>{item.name}</h3>
-                    </div>
-                    <div className="shop-wrapper-item-price">
-                        <span>${item.price}</span>
-                    </div>
-                    <div className="shop-wrapper-item-btn">
-                        <button
-                            className="btn_buy"
-                            onClick={() => addToCart(item)}>
-                            BUY
-                        </button>
-                    </div>
+                    <Link to={`/shop/${item.name.replace(/\s+/g, '-') }`} >
+                            <div className="shop-wrapper-item-img">
+                                <img src={item.img} alt={item.name} />
+                            </div>
+                            <div className="shop-wrapper-item-title">
+                                <h3>{item.name}</h3>
+                            </div>
+                    </Link>
+                        <div className="shop-wrapper-item-price">
+                            <span>${item.price}</span>
+                        </div>
+                        <div className="shop-wrapper-item-btn">
+                            <button
+                                className="btn_buy"
+                                onClick={() => addToCart(item)}>
+                                BUY
+                            </button>
+                        </div>
                 </div>
             )
         });
@@ -212,6 +217,27 @@ const ShopPage = () => {
                                 </div>
                             </div>
                         )}
+                    </div>   
+                    <div className="shop-pagination">
+                        <div className="shop-per-page">
+                            <div className="shop-per-page-title">
+                                <h3>Products per page::</h3>
+                            </div>
+                                <select
+                                    name="perPage"
+                                    id="perPage"
+                                    // onChange={onPerPageChange}
+                                >
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="50">50</option>
+                                </select>
+                        </div>
+                        <div className="shop-pagination-list">
+                        <div className="btn_prev"><FontAwesomeIcon icon={faChevronLeft} /></div>
+                            <div className="shop-pagination-list-count">1</div>
+                        <div className="btn_next"><FontAwesomeIcon icon={faChevronRight} /></div>
+                        </div>
                     </div>
                 </div>
             </section>

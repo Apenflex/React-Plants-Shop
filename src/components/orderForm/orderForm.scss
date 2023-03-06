@@ -1,0 +1,8 @@
+
+
+.order-form {
+    padding: 5px 30px;
+    @media screen and (max-width: 390px) {
+        padding: 5px 10px;
+    }
+}

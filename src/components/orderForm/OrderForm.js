@@ -18,13 +18,7 @@ const OrderForm = ({ onSubmit }) => {
     }
 
     return (
-        <div className="contact-form">
-            {/* <h2 className='contact-form-title'>Send a Request</h2>
-            <div className='contact-form-descr'>
-                If you want to buy a plant, visit our
-                offline store or the greenhouse, leave us a message.
-            </div> */}
-
+        <div className="contact-form order-form">
             <Formik
                 initialValues={{
                     name: '',
@@ -45,8 +39,7 @@ const OrderForm = ({ onSubmit }) => {
                     setShowModal(true);
                     // Скидання значень полів форми
                     actions.resetForm();
-                }}
-            >
+                }}>
                 <Form>
                     <div className="contact-form-group">
                         <Field
