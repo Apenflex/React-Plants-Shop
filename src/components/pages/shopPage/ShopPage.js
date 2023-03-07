@@ -19,9 +19,24 @@ const ShopPage = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     const [cartItems, setCartItems] = useState([]);
-    console.log(cartItems)
+    // console.log(cartItems)
     const [quantity, setQuantity] = useState(0);
     // console.log(quantity);
+
+    useEffect(() => {
+        const savedCartItems = localStorage.getItem("cartItems");
+        const savedQuantity = localStorage.getItem("quantity");
+        if (savedCartItems.length !== 2 && savedQuantity !== 0) {
+            setCartItems(JSON.parse(savedCartItems));
+            setQuantity(JSON.parse(savedQuantity));
+            setShowCartIcon(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("quantity", JSON.stringify(quantity));
+    }, [cartItems, quantity]);
 
     const addToCart = (item) => {
         // console.log('render addToCart');
@@ -37,7 +52,12 @@ const ShopPage = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
     };
 
+    const toggleCart = () => {
+        setIsCartOpen(!isCartOpen);
+    };
+
     const removeFromCart = (item) => {
+        // console.log('render removeFromCart')
         const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
         setCartItems(updatedCartItems);
         setQuantity(quantity - item.quantity);
@@ -48,11 +68,20 @@ const ShopPage = () => {
         }
     };
 
+    const clearCart = () => {
+        // console.log('render clearCart')
+        setCartItems([]);
+        setShowCartIcon(false);
+        setQuantity(0);
+    };
+
     const calculateItemTotal = (item) => {
+        // console.log('render calculateItemTotal')
         return (item.quantity * +item.price).toFixed(2);
     };
 
     const calculateTotal = (cartItems) => {
+        // console.log('render calculateTotal')
         const cartItemsArray = Object.values(cartItems);
         const total = cartItemsArray.reduce((acc, item) => {
             return acc + item.quantity * +item.price;
@@ -62,18 +91,17 @@ const ShopPage = () => {
 
     const onInputButtonChange = (count, item) => {
         // console.log('render onInputButtonChange')
-        console.log(item.quantity)
         switch (count) {
             case "increase":
                 if (item.quantity < 100) {
-                    setQuantity((prevQuantity) => prevQuantity + 1);
                     cartItems.find((cartItem) => cartItem.id === item.id).quantity += 1;
+                    setQuantity((prevQuantity) => prevQuantity + 1);
                 }
                 break;
             case "decrease":
                 if (item.quantity > 1) {
-                    setQuantity((prevQuantity) => prevQuantity - 1);
                     cartItems.find((cartItem) => cartItem.id === item.id).quantity -= 1;
+                    setQuantity((prevQuantity) => prevQuantity - 1);
                 }
                 break;
             default:
@@ -82,8 +110,9 @@ const ShopPage = () => {
     };
 
     const onInputChange = (e, item) => {
+        // console.log('render onInputChange')
         let newQuantity = parseInt(e.target.value);
-        console.log(newQuantity);
+        
         if (isNaN(newQuantity) || newQuantity < 1) {
             newQuantity = 1; // or any default value
         } else if (newQuantity > 100) {
@@ -98,16 +127,6 @@ const ShopPage = () => {
         });
         setQuantity((prevQuantity) => prevQuantity - item.quantity + newQuantity);
         setCartItems(updatedCartItems);
-    };
-
-    const clearCart = () => {
-        setCartItems([]);
-        setShowCartIcon(false);
-        setQuantity(0);
-    };
-
-    const toggleCart = () => {
-        setIsCartOpen(!isCartOpen);
     };
 
     function renderItems(arr) {
@@ -138,7 +157,6 @@ const ShopPage = () => {
         return items;
     }
     // const items = renderItems(goods);
-
     return (
         <>
             <AppHeader />
