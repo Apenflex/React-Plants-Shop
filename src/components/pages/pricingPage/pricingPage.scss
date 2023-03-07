@@ -47,12 +47,11 @@
             font-size: 18px;
             font-weight: 400;
             line-height: 28px;
-            margin-top: 10px;
             text-align: center;
         }
     }
     &-tabs {
-        margin-top: 50px;
+        margin-top: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -149,8 +148,8 @@
 }
 
 .pricing {
-    min-height: 770px;
-    padding: 30px 0 60px;
+    min-height: 720px;
+    padding: 5px 0 20px;
     &-header {
         display: flex;
         flex-direction: column;
