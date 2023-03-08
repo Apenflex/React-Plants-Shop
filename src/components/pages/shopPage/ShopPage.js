@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+import useShop from '../../../store';
+
+// import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 import useGoods from "../../../services/useGoods"
@@ -14,120 +16,135 @@ import "./shopPage.scss"
 
 const ShopPage = () => {
     const { goods } = useGoods();
+    const {
+        cartItems,
+        showCartIcon,
+        isCartOpen,
+        quantity,
+        addToCart,
+        toggleCart,
+        removeFromCart,
+        clearCart,
+        onInputButtonChange,
+        onInputChange,
+    } = useShop();
+    const calculateItemTotal = useShop((state) => state.calculateItemTotal);
+    const calculateTotal = useShop((state) => state.calculateTotal);
 
-    const [showCartIcon, setShowCartIcon] = useState(false);
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    // const [showCartIcon, setShowCartIcon] = useState(false);
+    // const [isCartOpen, setIsCartOpen] = useState(false);
 
-    const [cartItems, setCartItems] = useState([]);
+    // const [cartItems, setCartItems] = useState([]);
     // console.log(cartItems)
-    const [quantity, setQuantity] = useState(0);
+    // const [quantity, setQuantity] = useState(0);
     // console.log(quantity);
 
-    useEffect(() => {
-        const savedCartItems = localStorage.getItem("cartItems");
-        const savedQuantity = localStorage.getItem("quantity");
-        if (savedCartItems.length !== 2 && savedQuantity !== 0) {
-            setCartItems(JSON.parse(savedCartItems));
-            setQuantity(JSON.parse(savedQuantity));
-            setShowCartIcon(true);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedCartItems = localStorage.getItem("cartItems");
+    //     const savedQuantity = localStorage.getItem("quantity");
+    //     if (savedCartItems.length !== 2 && savedQuantity !== 0) {
+    //         setCartItems(JSON.parse(savedCartItems));
+    //         setQuantity(JSON.parse(savedQuantity));
+    //         setShowCartIcon(true);
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("quantity", JSON.stringify(quantity));
-    }, [cartItems, quantity]);
+    // useEffect(() => {
+    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    //     localStorage.setItem("quantity", JSON.stringify(quantity));
+    // }, [cartItems, quantity]);
 
-    const addToCart = (item) => {
-        // console.log('render addToCart');
-        const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-        if (existingItem) {
-            existingItem.quantity += 1;
-            setCartItems([...cartItems]);
-        } else {
-            setCartItems([...cartItems, { ...item, quantity: 1 }]);
-        }
-        setShowCartIcon(true);
-        // Розрахунок кількості товарів в корзині
-        setQuantity((prevQuantity) => prevQuantity + 1);
-    };
+    // const addToCart = (item) => {
+    //     // console.log('render addToCart');
+    //     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    //     if (existingItem) {
+    //         existingItem.quantity += 1;
+    //         setCartItems([...cartItems]);
+    //     } else {
+    //         setCartItems([...cartItems, { ...item, quantity: 1 }]);
+    //     }
+    //     setShowCartIcon(true);
+    //     // Розрахунок кількості товарів в корзині
+    //     setQuantity((prevQuantity) => prevQuantity + 1);
+    // };
 
-    const toggleCart = () => {
-        setIsCartOpen(!isCartOpen);
-    };
+    // const toggleCart = () => {
+    //     setIsCartOpen(!isCartOpen);
+    // };
 
-    const removeFromCart = (item) => {
-        // console.log('render removeFromCart')
-        const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
-        setCartItems(updatedCartItems);
-        setQuantity(quantity - item.quantity);
-        if (updatedCartItems.length === 0) {
-            setShowCartIcon(false);
-            setQuantity(0);
-            toggleCart();
-        }
-    };
+    // const removeFromCart = (item) => {
+    //     // console.log('render removeFromCart')
+    //     const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
+    //     setCartItems(updatedCartItems);
+    //     setQuantity(quantity - item.quantity);
+    //     if (updatedCartItems.length === 0) {
+    //         setShowCartIcon(false);
+    //         setQuantity(0);
+    //         toggleCart();
+    //     }
+    // };
 
-    const clearCart = () => {
-        // console.log('render clearCart')
-        setCartItems([]);
-        setShowCartIcon(false);
-        setQuantity(0);
-    };
+    // const clearCart = () => {
+    //     // console.log('render clearCart')
+    //     setCartItems([]);
+    //     setShowCartIcon(false);
+    //     setQuantity(0);
+    // };
 
-    const calculateItemTotal = (item) => {
-        // console.log('render calculateItemTotal')
-        return (item.quantity * +item.price).toFixed(2);
-    };
+    // const calculateItemTotal = (item) => {
+    //     // console.log('render calculateItemTotal')
+    //     return (item.quantity * +item.price).toFixed(2);
+    // };
 
-    const calculateTotal = (cartItems) => {
-        // console.log('render calculateTotal')
-        const cartItemsArray = Object.values(cartItems);
-        const total = cartItemsArray.reduce((acc, item) => {
-            return acc + item.quantity * +item.price;
-        }, 0).toFixed(2);
-        return total;
-    }
+    // const calculateTotal = (cartItems) => {
+    //     // console.log('render calculateTotal')
+    //     const cartItemsArray = Object.values(cartItems);
+    //     const total = cartItemsArray.reduce((acc, item) => {
+    //         return acc + item.quantity * +item.price;
+    //     }, 0).toFixed(2);
+    //     return total;
+    // }
 
-    const onInputButtonChange = (count, item) => {
-        // console.log('render onInputButtonChange')
-        switch (count) {
-            case "increase":
-                if (item.quantity < 100) {
-                    cartItems.find((cartItem) => cartItem.id === item.id).quantity += 1;
-                    setQuantity((prevQuantity) => prevQuantity + 1);
-                }
-                break;
-            case "decrease":
-                if (item.quantity > 1) {
-                    cartItems.find((cartItem) => cartItem.id === item.id).quantity -= 1;
-                    setQuantity((prevQuantity) => prevQuantity - 1);
-                }
-                break;
-            default:
-                break;
-        }
-    };
+    // const onInputButtonChange = (count, item) => {
+    //     // console.log('render onInputButtonChange')
+    //     switch (count) {
+    //         case "increase":
+    //             if (item.quantity < 100) {
+    //                 cartItems.find((cartItem) => cartItem.id === item.id).quantity += 1;
+    //                 setQuantity((prevQuantity) => prevQuantity + 1);
+    //             }
+    //             break;
+    //         case "decrease":
+    //             if (item.quantity > 1) {
+    //                 cartItems.find((cartItem) => cartItem.id === item.id).quantity -= 1;
+    //                 setQuantity((prevQuantity) => prevQuantity - 1);
+    //             }
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
 
-    const onInputChange = (e, item) => {
-        // console.log('render onInputChange')
-        let newQuantity = parseInt(e.target.value);
-        
-        if (isNaN(newQuantity) || newQuantity < 1) {
-            newQuantity = 1; // or any default value
-        } else if (newQuantity > 100) {
-            newQuantity = 100; // or any max value you want
-        }
-        const updatedCartItems = cartItems.map((cartItem) => {
-            if (cartItem.id === item.id) {
-                return { ...cartItem, quantity: newQuantity };
-            } else {
-                return cartItem;
-            }
-        });
-        setQuantity((prevQuantity) => prevQuantity - item.quantity + newQuantity);
-        setCartItems(updatedCartItems);
-    };
+    // const onInputChange = (e, item) => {
+    //     // console.log('render onInputChange')
+    //     let newQuantity = parseInt(e.target.value);
+
+    //     if (isNaN(newQuantity) || newQuantity < 1) {
+    //         newQuantity = 1; // or any default value
+    //     } else if (newQuantity > 100) {
+    //         newQuantity = 100; // or any max value you want
+    //     }
+    //     const updatedCartItems = cartItems.map((cartItem) => {
+    //         if (cartItem.id === item.id) {
+    //             return { ...cartItem, quantity: newQuantity };
+    //         } else {
+    //             return cartItem;
+    //         }
+    //     });
+    //     setQuantity((prevQuantity) => prevQuantity - item.quantity + newQuantity);
+    //     setCartItems(updatedCartItems);
+    // };
+    
 
     function renderItems(arr) {
         const items = arr.map((item) => {
@@ -156,16 +173,16 @@ const ShopPage = () => {
         });
         return items;
     }
-    // const items = renderItems(goods);
+    const items = renderItems(goods);
     return (
         <>
             <AppHeader />
             <section className="shop">
                 <div className="container">
                     <div className="shop-wrapper">
-                        {renderItems(goods)}
+                        {items}
                         {showCartIcon && (
-                            <div className="cart-icon" onClick={toggleCart}>
+                            <div className="cart-icon" onClick={() => toggleCart()}>
                                 <div className="cart-icon-img">
                                     <img src={shopIcon} alt="shopIcon" />
                                 </div>
@@ -196,13 +213,16 @@ const ShopPage = () => {
                                                     <div className="modal-body-item-wrapper">
                                                         <div className="modal-body-item-count">
                                                             <input type="number" value={item.quantity}
-                                                                onChange={(e) => onInputChange(e, item)} />
+                                                                onChange={(e) => onInputChange(e, item)}
+                                                                />
                                                             <div className="arrows">
                                                                 <div className="up"
-                                                                    onClick={() => onInputButtonChange('increase', item)}>
+                                                                    onClick={() => onInputButtonChange('increase', item)}
+                                                                    >
                                                                 </div>
                                                                 <div className="down"
-                                                                    onClick={() => onInputButtonChange('decrease', item)}>
+                                                                    onClick={() => onInputButtonChange('decrease', item)}
+                                                                    >
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -210,7 +230,8 @@ const ShopPage = () => {
                                                             ${calculateItemTotal(item)}
                                                         </div>
                                                         <div className="modal-body-item-delete">
-                                                            <div className="btn_delete" onClick={() => removeFromCart(item)}>
+                                                            <div className="btn_delete"
+                                                                onClick={() => removeFromCart(item)}>
                                                                 <img src={deleteItemIcon} alt="deleteItemIcon" />
                                                             </div>
                                                         </div>
@@ -222,7 +243,7 @@ const ShopPage = () => {
                                                     Order Total:
                                                 </div>
                                                 <div className="modal-body-order-total-price">
-                                                    ${calculateTotal(cartItems)}
+                                                    ${calculateTotal()}
                                                 </div>
                                             </div>
                                             <OrderForm onSubmit={() => {
