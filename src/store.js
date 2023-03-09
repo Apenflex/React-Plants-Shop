@@ -1,36 +1,39 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
-const useShop = create((set, get) => ({
+const useShop = create(persist((set, get) => ({
     cartItems: [],
     showCartIcon: false,
     isCartOpen: false,
     quantity: 0,
-    addToCart: (item) => {
+    inputItemCount: 1,
+    addToCart: (item, inputItemCount) => {
+        const quantityToAdd = inputItemCount ? inputItemCount : 1;
         const existingItem = get().cartItems.find((cartItem) => cartItem.id === item.id);
         if (existingItem) {
-            existingItem.quantity += 1;
+            existingItem.quantity += quantityToAdd;
             set({ cartItems: [...get().cartItems] });
         } else {
-            set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
+            set({ cartItems: [...get().cartItems, { ...item, quantity: quantityToAdd }] });
         }
-        set({ showCartIcon: true, quantity: get().quantity + 1 });
+        set({ showCartIcon: true, quantity: get().quantity + quantityToAdd });
     },
     toggleCart: () => {
         set({ isCartOpen: !get().isCartOpen });
     },
     removeFromCart: (item) => {
-        const updatedCartItems = get().cartItems.filter((cartItem) => cartItem.id !== item.id);
-        set({ cartItems: updatedCartItems, quantity: get().quantity - item.quantity });
+        const { cartItems } = get();
+        const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
+        const updatedQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0) - item.quantity;
+
+        set({ cartItems: updatedCartItems, quantity: updatedQuantity });
+
         if (updatedCartItems.length === 0) {
-            set({ showCartIcon: false });
-            set({ quantity: 0 });
-            set({ isCartOpen: !get().isCartOpen });
+            set({ showCartIcon: false, quantity: 0, isCartOpen: !get().isCartOpen });
         }
     },
     clearCart: () => {
-        set({ cartItems: [] });
-        set({ showCartIcon: false });
-        set({ quantity: 0 });
+        set({ cartItems: [], showCartIcon: false, quantity: 0 });
     },
     calculateItemTotal: (item) => {
         return (item.quantity * +item.price).toFixed(2);
@@ -79,7 +82,25 @@ const useShop = create((set, get) => ({
             quantity: prevState.quantity - item.quantity + newQuantity,
         }));
     },
-
-}));
+    oninputItemCount: (type) => {
+        switch (type) {
+            case 'increase':
+                set({ inputItemCount: get().inputItemCount + 1 });
+                break;
+            case 'decrease':
+                if (get().inputItemCount > 1) {
+                    set({ inputItemCount: get().inputItemCount - 1 });
+                }
+                break;
+            default:
+                break;
+        }
+    },
+}),
+    {
+        name: 'shop-storage',
+        storage: createJSONStorage(() => localStorage),
+    }
+));
 
 export default useShop;

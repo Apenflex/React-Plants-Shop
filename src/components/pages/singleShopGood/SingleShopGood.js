@@ -1,17 +1,25 @@
+import useShop from '../../../store';
 import { Link, useParams } from "react-router-dom";
 import useGoods from "../../../services/useGoods";
 
 import AppHeader from "../../appHeader/AppHeader";
+import ShowCart from "../../pages/shopPage/ShowCart";
 import AppFooter from "../../appFooter/AppFooter";
 
 import "./singleShopGood.scss";
 
 const SingleShopGood = () => {
     const { goods } = useGoods();
+    const {
+        addToCart,
+        inputItemCount,
+        oninputItemCount,
+        // onInputChange,
+    } = useShop();
 
     const { name } = useParams();
     const item = goods.find((item) => item.name === name.replace(/-/g, " "));
-    console.log(item);
+
     return (
         <>
             <AppHeader />
@@ -22,6 +30,7 @@ const SingleShopGood = () => {
                             <img src={item.img} alt="" />
                         </div>
                         <div className="good-info">
+                            <ShowCart />
                             <div className="good-info-block">
                                 <div className="good-info-stock">In stock</div>
                                 <Link to="/shop" className="good-info-back btn_small">Back to store</Link>
@@ -32,21 +41,22 @@ const SingleShopGood = () => {
                             <div className="good-info-divider1"></div>
                             <div className="good-info-addtocart">
                                 <div className="good-info-addtocart-count">
-                                    <input type="number" value={item.quantity}
+                                    <input type="number"
+                                        value={inputItemCount}
                                         // onChange={(e) => onInputChange(e, item)}
                                     />
                                     <div className="arrows">
                                         <div className="up"
-                                            // onClick={() => onInputButtonChange('increase', item)}
-                                        >
+                                            onClick={() => oninputItemCount('increase')}>
                                         </div>
                                         <div className="down"
-                                            // onClick={() => onInputButtonChange('decrease', item)}
-                                        >
+                                            onClick={() => oninputItemCount('decrease')}>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="good-info-addtocart-btn btn btn_large">
+                                <div className="good-info-addtocart-btn btn btn_large"
+                                    onClick={() => addToCart(item, inputItemCount)}
+                                >
                                     Add to cart
                                 </div>
                             </div>

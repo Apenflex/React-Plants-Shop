@@ -15,8 +15,6 @@ import TabOutdoorImg4 from '../../../resources/img/tab_outdoor-4-min.png'
 
 import './pricingPage.scss'
 
-
-
 const PricingPage = () => {
 
     const [activeTab, setActiveTab] = useState('indoor');
@@ -32,9 +30,9 @@ const PricingPage = () => {
         setIsModalOpen(true);
     };
 
-    // const handleCloseModalClick = () => {
-    //     setIsModalOpen(false);
-    // };
+    const onModalClose = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <>
@@ -200,12 +198,11 @@ const PricingPage = () => {
                                 <span>Bryophyllum</span>
                                 <span>Philodendron</span>
                             </div>
-                            <a
-                                href="/"
+                            <div
                                 className="pricing__content_card-btn btn_small"
                                 onClick={handleCustomOrderClick}>
                                 CUSTOM ORDER
-                            </a>
+                            </div>
                         </div>
                         <div className="pricing__content_card">
                             <div className="pricing__content_card-uptitle">
@@ -219,7 +216,11 @@ const PricingPage = () => {
                                 <span>Elephant bush</span>
                                 <span>Crassula ovata</span>
                             </div>
-                            <a href="/" className="pricing__content_card-btn btn_small">CUSTOM ORDER</a>
+                            <div
+                                className="pricing__content_card-btn btn_small"
+                                onClick={handleCustomOrderClick}>
+                                CUSTOM ORDER
+                            </div>
                         </div>
                         <div className="pricing__content_card">
                             <div className="pricing__content_card-uptitle">
@@ -233,7 +234,11 @@ const PricingPage = () => {
                                 <span>Cedar pine</span>
                                 <span>Thuja</span>
                             </div>
-                            <a href="/" className="pricing__content_card-btn btn_small">CUSTOM ORDER</a>
+                            <div
+                                className="pricing__content_card-btn btn_small"
+                                onClick={handleCustomOrderClick}>
+                                CUSTOM ORDER
+                            </div>
                         </div>
                         <div className="pricing__content_card">
                             <div className="pricing__content_card-uptitle">
@@ -247,12 +252,17 @@ const PricingPage = () => {
                                 <span>Dieffenbachia</span>
                                 <span>Rubber Tree</span>
                             </div>
-                            <a href="/" className="pricing__content_card-btn btn_small">CUSTOM ORDER</a>
+                            <div
+                                className="pricing__content_card-btn btn_small"
+                                onClick={handleCustomOrderClick}>
+                                CUSTOM ORDER
+                            </div>
                         </div>
                     </div>
                     {isModalOpen && (
                         <div className="modal">
                             <div className="modal__content">
+                                <div className="modal__content_close" onClick={onModalClose}>+</div>
                                 <Form onSubmit={() => setIsModalOpen(false)} />
                             </div>
                         </div>

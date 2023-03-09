@@ -250,6 +250,7 @@
                 }
             }
             &-btn {
+                cursor: pointer;
                 margin-top: 40px;
                 background-color: $brand-color;
                 color: #fff;
@@ -273,10 +274,19 @@
         justify-content: center;
         z-index: 10;
         &__content {
+            position: relative;
             width: 500px;
             height: 500px;
             background-color: #fff;
             border-radius: 10px;
+            &_close {
+                font-size: 27px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                transform: rotate(45deg);
+            }
             .contact-form {
                 padding: 10px 40px;
                 gap: 5px;
