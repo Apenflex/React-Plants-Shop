@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-
 import AppHeader from "../../appHeader/AppHeader";
 import AppFooter from "../../appFooter/AppFooter";
 import UseArticles from '../../../services/UseArticles';
@@ -8,7 +7,6 @@ import UseArticles from '../../../services/UseArticles';
 import "./blogPage.scss";
 
 const BlogPage = () => {
-    
     const { articles } = UseArticles();
 
     function renderItems(arr) {

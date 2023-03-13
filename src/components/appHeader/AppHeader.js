@@ -1,24 +1,16 @@
-import { useState } from 'react';
+import { useHamburger } from '../../store';
 import { Link } from 'react-router-dom';
 
 import logoHeader from '../../resources/img/logo/logo_header.svg'
-
 import './appHeader.scss'
 
 const AppHeader = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const onHamburgerClick = () => {
-        setMenuOpen(!menuOpen);
-    }
-
-    const onLinkClick = () => {
-        setMenuOpen(false);
-    }
+    const { menuOpen, toggleMenu, toggleMeunuOnLinkClick } = useHamburger();
 
     const hamburgerClass = menuOpen ? "hamburger hamburger--spring is-active" : "hamburger hamburger--spring";
     const menuClass = menuOpen ? "app-header-menu app-header-menu-active" : "app-header-menu";
     const logoClass = menuOpen ? "app-header-logo app-header-logo-active" : "app-header-logo";
+
     return (
         <div className="app-header">
             <div className="container">
@@ -30,15 +22,15 @@ const AppHeader = () => {
                     </div>
                     
                     <nav className={menuClass}>
-                        <Link to="/about/" onClick={onLinkClick}>About us</Link>
-                        <Link to="/blog/" onClick={onLinkClick}>Blog</Link>
-                        <Link to="/shop/" onClick={onLinkClick}>Shop</Link>
-                        <Link to="/pricing/" onClick={onLinkClick}>Pricing</Link>
-                        <Link to="/testimonials/" onClick={onLinkClick}>Testimonials</Link>
-                        <Link to="/contact/" onClick={onLinkClick}>Contact us</Link>
+                        <Link to="/about/" onClick={() => toggleMeunuOnLinkClick()}>About us</Link>
+                        <Link to="/blog/" onClick={() => toggleMeunuOnLinkClick()}>Blog</Link>
+                        <Link to="/shop/" onClick={() => toggleMeunuOnLinkClick()}>Shop</Link>
+                        <Link to="/pricing/" onClick={() => toggleMeunuOnLinkClick()}>Pricing</Link>
+                        <Link to="/testimonials/" onClick={() => toggleMeunuOnLinkClick()}>Testimonials</Link>
+                        <Link to="/contact/" onClick={() => toggleMeunuOnLinkClick()}>Contact us</Link>
                     </nav>
                 </div>
-                <div className={hamburgerClass} onClick={onHamburgerClick}>
+                <div className={hamburgerClass} onClick={() => toggleMenu()}>
                     <div className="hamburger-box">
                         <div className="hamburger-inner"></div>
                     </div>
@@ -46,6 +38,5 @@ const AppHeader = () => {
             </div>
         </div>
     )
-}
-
+};
 export default AppHeader

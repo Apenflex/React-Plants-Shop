@@ -1,28 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useScrollButton } from '../../store'
 
 import "./scrollUp.scss";
 
 const ScrollButton = () => {
-    const [isVisible, setIsVisible] = useState(false);
+    const { isVisible, toggleVisibility, scrollToTop } = useScrollButton()
 
     useEffect(() => {
-        const toggleVisibility = () => {
-            if (window.scrollY > 900) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
         window.addEventListener("scroll", toggleVisibility);
         return () => window.removeEventListener("scroll", toggleVisibility);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
+    }, [toggleVisibility]);
 
     return (
         <div 

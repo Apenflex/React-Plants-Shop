@@ -1,8 +1,11 @@
-import useShop from '../../../store';
-import { Link } from "react-router-dom"
-import useGoods from "../../../services/useGoods"
+import { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { useShop } from '../../../store';
+import { useGoods } from '../../../store';
 
 import AppHeader from "../../appHeader/AppHeader"
+import ErrorMessage from '../../errorMessage/ErrorMessage'
+import Spinner from "../../spinner/Spinner"
 import ShowCart from "./ShowCart"
 import AppFooter from "../../appFooter/AppFooter"
 
@@ -11,36 +14,45 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import "./shopPage.scss"
 
 const ShopPage = () => {
-    const { goods } = useGoods();
+    console.log('render ShopPage')
+    const { goods, isLoading, isError, fetchGoods } = useGoods();
     const { addToCart } = useShop();
+
+    useEffect(() => {
+        console.log('useEffect')
+        fetchGoods();
+    // eslint-disable-next-line    
+    }, []);
 
     function renderItems(arr) {
         const items = arr.map((item) => {
             return (
                 <div className="shop-wrapper-item" key={item.id}>
-                    <Link to={`/shop/${item.name.replace(/\s+/g, '-') }`} >
-                            <div className="shop-wrapper-item-img">
-                                <img src={item.img} alt={item.name} />
-                            </div>
-                            <div className="shop-wrapper-item-title">
-                                <h3>{item.name}</h3>
-                            </div>
+                    <Link to={`/shop/${item.name.replace(/\s+/g, '-')}`} >
+                        <div className="shop-wrapper-item-img">
+                            <img src={item.img} alt={item.name} />
+                        </div>
+                        <div className="shop-wrapper-item-title">
+                            <h3>{item.name}</h3>
+                        </div>
                     </Link>
-                        <div className="shop-wrapper-item-price">
-                            <span>${item.price}</span>
-                        </div>
-                        <div className="shop-wrapper-item-btn">
-                            <button
-                                className="btn_buy"
-                                onClick={() => addToCart(item)}>
-                                BUY
-                            </button>
-                        </div>
+                    <div className="shop-wrapper-item-price">
+                        <span>${item.price.toFixed(2)}</span>
+                    </div>
+                    <div className="shop-wrapper-item-btn">
+                        <button
+                            className="btn_buy"
+                            onClick={() => addToCart(item)}>
+                            BUY
+                        </button>
+                    </div>
                 </div>
             )
         });
         return items;
     }
+    const errorMessage = isError && goods.length === 0 ? <ErrorMessage /> : null;
+    const spinner = isLoading && goods.length === 0 ? <Spinner /> : null;
     const items = renderItems(goods);
     return (
         <>
@@ -48,9 +60,11 @@ const ShopPage = () => {
             <section className="shop">
                 <div className="container">
                     <div className="shop-wrapper">
+                        {errorMessage}
+                        {spinner}
                         {items}
                         <ShowCart />
-                    </div>   
+                    </div>
                     <div className="shop-pagination">
                         <div className="shop-per-page">
                             <div className="shop-per-page-title">
@@ -59,7 +73,7 @@ const ShopPage = () => {
                             <select
                                 name="perPage"
                                 id="perPage"
-                                // onChange={onPerPageChange}
+                            // onChange={onPerPageChange}
                             >
                                 <option value="12">12</option>
                                 <option value="24">24</option>
@@ -78,5 +92,4 @@ const ShopPage = () => {
         </>
     )
 }
-
 export default ShopPage

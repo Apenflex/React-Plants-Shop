@@ -1,4 +1,4 @@
-import useShop from '../../../store';
+import {useShop} from '../../../store';
 
 import OrderForm from '../../orderForm/OrderForm';
 
@@ -6,6 +6,7 @@ import shopIcon from '../../../resources/img/icons/basket-shopping-solid.svg';
 import deleteItemIcon from '../../../resources/img/icons/deleteItemIcon.svg';
 
 const ShowCart = () => {
+   console.log('render ShowCart');
    const {
       cartItems,
       showCartIcon,
@@ -36,7 +37,7 @@ const ShowCart = () => {
                <div className="modal-content">
                   <div className="modal-header">
                      <h2>Shopping Cart</h2>
-                     <div className="btn_close" onClick={toggleCart}>+</div>
+                     <div className="btn_close" onClick={() => toggleCart()}>+</div>
                   </div>
                   <div className="modal-body">
                      <ul>

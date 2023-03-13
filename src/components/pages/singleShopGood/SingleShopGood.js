@@ -1,6 +1,6 @@
-import useShop from '../../../store';
 import { Link, useParams } from "react-router-dom";
-import useGoods from "../../../services/useGoods";
+import { useShop } from '../../../store';
+import { useGoods } from '../../../store';
 
 import AppHeader from "../../appHeader/AppHeader";
 import ShowCart from "../../pages/shopPage/ShowCart";
@@ -10,14 +10,9 @@ import "./singleShopGood.scss";
 
 const SingleShopGood = () => {
     const { goods } = useGoods();
-    const {
-        addToCart,
-        inputItemCount,
-        oninputItemCount,
-        // onInputChange,
-    } = useShop();
-
+    const { addToCart, inputItemCount, oninputItemCount, onInputChange, } = useShop();
     const { name } = useParams();
+
     const item = goods.find((item) => item.name === name.replace(/-/g, " "));
 
     return (
@@ -37,7 +32,7 @@ const SingleShopGood = () => {
                             </div>
                             <div className="good-info-title">{item.name}</div>
                             <div className="good-info-code">Product code {item.id}</div>
-                            <div className="good-info-price">${item.price}</div>
+                            <div className="good-info-price">${item.price.toFixed(2)}</div>
                             <div className="good-info-divider1"></div>
                             <div className="good-info-addtocart">
                                 <div className="good-info-addtocart-count">
@@ -55,8 +50,7 @@ const SingleShopGood = () => {
                                     </div>
                                 </div>
                                 <div className="good-info-addtocart-btn btn btn_large"
-                                    onClick={() => addToCart(item, inputItemCount)}
-                                >
+                                    onClick={() => addToCart(item, inputItemCount)}>
                                     Add to cart
                                 </div>
                             </div>
@@ -73,5 +67,4 @@ const SingleShopGood = () => {
         </>
     );
 };
-
 export default SingleShopGood;

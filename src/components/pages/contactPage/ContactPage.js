@@ -1,10 +1,8 @@
-
 import AppHeader from '../../appHeader/AppHeader'
 import AppFooter from '../../appFooter/AppFooter'
 import Form from '../../contactForm/Form'
 
 import GoogleMap from '../../../resources/img/google_maps.png'
-
 import './contactPage.scss'
 
 const ContactPage = () => {

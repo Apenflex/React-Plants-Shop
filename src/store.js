@@ -1,7 +1,29 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-const useShop = create(persist((set, get) => ({
+export const useGoods = create(( set ) => ({
+    goods: [],
+    isLoading: false,
+    isError: null,
+    fetchGoods: async () => {
+        set({ isLoading: true });
+        new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(require('./services/useGoods.json'));
+            }, 1000)
+        })
+            .then((data) => {
+                set({ goods: data, isLoading: false, isError: false });
+                // set({ goods: [], isLoading: false, isError: true });
+            })
+            .catch((err) => {
+                console.log(err);
+                set({ goods: [], isLoading: false, isError: true})
+            });
+    },
+}));
+
+export const useShop = create(persist((set, get) => ({
     cartItems: [],
     showCartIcon: false,
     isCartOpen: false,
@@ -83,6 +105,7 @@ const useShop = create(persist((set, get) => ({
         }));
     },
     oninputItemCount: (type) => {
+        console.log('render oninputItemCount')
         switch (type) {
             case 'increase':
                 set({ inputItemCount: get().inputItemCount + 1 });
@@ -103,4 +126,57 @@ const useShop = create(persist((set, get) => ({
     }
 ));
 
-export default useShop;
+export const useTabs = create((set, get) => ({
+    activeTab: 'indoor',
+    isModalOpen: false,
+    onTabClick: (tab) => {
+        set({ activeTab: tab });
+    },
+    onCustomOrderClick: () => {
+        set({ isModalOpen: !get().isModalOpen });
+    },
+    onModal: (close) => {
+        if (close) {
+            set({ isModalOpen: false });
+        } else {
+            set({ isModalOpen: !get().isModalOpen });
+        }
+    }
+}));
+
+export const useAccordion = create((set, get) => ({
+    activeIndex: null,
+    onAccordeonClick: (index) => {
+        const { activeIndex } = get();
+        (activeIndex === index) ? set({ activeIndex: null }) : set({ activeIndex: index });
+    },
+}));
+
+export const useScrollButton = create(( set ) => ({
+    isVisible: false,
+    toggleVisibility: () => {
+        if (window.scrollY > 900) {
+            set({ isVisible: true });
+        } else {
+            set({ isVisible: false });
+        }
+    },
+    scrollToTop: () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    },
+}));
+
+export const useHamburger = create((set, get) => ({
+    menuOpen: false,
+    toggleMenu: () => {
+        set({ menuOpen: !get().menuOpen });
+    },
+    toggleMeunuOnLinkClick: () => {
+        if (get().menuOpen) {
+            set({ menuOpen: false });
+        }
+    }
+}));

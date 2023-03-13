@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useTabs } from "../../../store";
 
 import AppHeader from "../../appHeader/AppHeader"
 import AppFooter from "../../appFooter/AppFooter"
@@ -16,23 +16,7 @@ import TabOutdoorImg4 from '../../../resources/img/tab_outdoor-4-min.png'
 import './pricingPage.scss'
 
 const PricingPage = () => {
-
-    const [activeTab, setActiveTab] = useState('indoor');
-
-    const handleTabClick = (tab) => {
-        setActiveTab(tab);
-    }
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleCustomOrderClick = (e) => {
-        e.preventDefault();
-        setIsModalOpen(true);
-    };
-
-    const onModalClose = () => {
-        setIsModalOpen(false);
-    };
+    const { activeTab, onTabClick, isModalOpen, onModal } = useTabs();
 
     return (
         <>
@@ -49,12 +33,12 @@ const PricingPage = () => {
                     <div className="offer-tabs">
                         <div
                             className={`offer-tabs-tab ${activeTab === 'indoor' ? 'offer-tabs-tab-active' : ''}`}
-                            onClick={() => handleTabClick('indoor')}>
+                            onClick={() => onTabClick('indoor')}>
                             INDOOR
                         </div>
                         <div
                             className={`offer-tabs-tab ${activeTab === 'outdoor' ? 'offer-tabs-tab-active' : ''}`}
-                            onClick={() => handleTabClick('outdoor')}>
+                            onClick={() => onTabClick('outdoor')}>
                             OUTDOOR
                         </div>
                     </div>
@@ -200,7 +184,7 @@ const PricingPage = () => {
                             </div>
                             <div
                                 className="pricing__content_card-btn btn_small"
-                                onClick={handleCustomOrderClick}>
+                                onClick={() => onModal()}>
                                 CUSTOM ORDER
                             </div>
                         </div>
@@ -218,7 +202,7 @@ const PricingPage = () => {
                             </div>
                             <div
                                 className="pricing__content_card-btn btn_small"
-                                onClick={handleCustomOrderClick}>
+                                onClick={() => onModal()}>
                                 CUSTOM ORDER
                             </div>
                         </div>
@@ -236,7 +220,7 @@ const PricingPage = () => {
                             </div>
                             <div
                                 className="pricing__content_card-btn btn_small"
-                                onClick={handleCustomOrderClick}>
+                                onClick={() => onModal()}>
                                 CUSTOM ORDER
                             </div>
                         </div>
@@ -245,7 +229,7 @@ const PricingPage = () => {
                                 from <span>$25</span>
                             </div>
                             <div className="pricing__content_card-title">
-                                Small plants
+                                Big plants
                             </div>
                             <div className="pricing__content_card-descr">
                                 <span>Dracaena</span>
@@ -254,7 +238,7 @@ const PricingPage = () => {
                             </div>
                             <div
                                 className="pricing__content_card-btn btn_small"
-                                onClick={handleCustomOrderClick}>
+                                onClick={() => onModal()}>
                                 CUSTOM ORDER
                             </div>
                         </div>
@@ -262,8 +246,8 @@ const PricingPage = () => {
                     {isModalOpen && (
                         <div className="modal">
                             <div className="modal__content">
-                                <div className="modal__content_close" onClick={onModalClose}>+</div>
-                                <Form onSubmit={() => setIsModalOpen(false)} />
+                                <div className="modal__content_close" onClick={() => onModal('close')}>+</div>
+                                <Form onSubmit={() => onModal('close')} />
                             </div>
                         </div>
                     )}
