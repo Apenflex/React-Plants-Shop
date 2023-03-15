@@ -1,6 +1,6 @@
+import { Helmet } from 'react-helmet';
 import { Link, useParams } from "react-router-dom";
-import { useShop } from '../../../store';
-import { useGoods } from '../../../store';
+import { useShop, useGoods } from '../../../store';
 
 import AppHeader from "../../appHeader/AppHeader";
 import ShowCart from "../../pages/shopPage/ShowCart";
@@ -10,13 +10,19 @@ import "./singleShopGood.scss";
 
 const SingleShopGood = () => {
     const { goods } = useGoods();
-    const { addToCart, inputItemCount, oninputItemCount, onInputChange, } = useShop();
+    const { addToCart, inputItemCount, oninputItemCount,
+        onInputChange,
+    } = useShop();
     const { name } = useParams();
 
     const item = goods.find((item) => item.name === name.replace(/-/g, " "));
 
     return (
         <>
+            <Helmet>
+                <title>{item.name}</title>
+                <meta name="description" content={item.descr} />
+            </Helmet>
             <AppHeader />
             <section className="single_shop_good">
                 <div className="container">
@@ -38,7 +44,7 @@ const SingleShopGood = () => {
                                 <div className="good-info-addtocart-count">
                                     <input type="number"
                                         value={inputItemCount}
-                                        // onChange={(e) => onInputChange(e, item)}
+                                        onChange={(e) => onInputChange(console.log(e.target.value))}
                                     />
                                     <div className="arrows">
                                         <div className="up"

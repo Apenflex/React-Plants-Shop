@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AppHeader from '../../appHeader/AppHeader'
@@ -8,9 +9,19 @@ import AboutImg from '../../../resources/img/section_about-img-min.png'
 import './aboutPage.scss'
 
 const AboutPage = () => {
-
+ 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Our shop offers you to buy home plants to decorate your home or office.
+                    In our offline shop, you will find the best selection of flowers and evergreens
+                    at attractive prices. We get indoor flowers from the best suppliers in NY, all
+                    plants are grown with strict adherence to technology. We offer: LARGE SELECTION OF DIFFERENT PLANTS RELATED SERVICES AND HOME GOODS"
+                />
+                <title>About Us</title>
+            </Helmet>
             <AppHeader />
             <section className="about_page">
                 <div className="container">
@@ -32,7 +43,8 @@ const AboutPage = () => {
                                 <div className="about_page_left_list-item">LARGE SELECTION OF DIFFERENT PLANTS</div>
                                 <div className="about_page_left_list-item">RELATED SERVICES AND HOME GOODS</div>
                             </div>
-                            <Link to="/shop/" className="about_page_left-button btn_large">BROWSE PLANTS</Link>
+                            <Link to="/shop/"
+                                className="about_page_left-button btn_large">BROWSE PLANTS</Link>
                         </div>
                         <div className="about_page_right">
                             <div className="about_page_right-img">

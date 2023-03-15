@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { useTabs } from "../../../store";
 
 import AppHeader from "../../appHeader/AppHeader"
@@ -20,6 +21,16 @@ const PricingPage = () => {
 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Our shop offers you to buy home plants to decorate your home or office.
+                    In our offline shop, you will find the best selection of flowers and evergreens
+                    at attractive prices. We get indoor flowers from the best suppliers in NY, all
+                    plants are grown with strict adherence to technology. We offer: LARGE SELECTION OF DIFFERENT PLANTS RELATED SERVICES AND HOME GOODS"
+                />
+                <title>Pricing</title>
+            </Helmet>
             <AppHeader />
             <section className="offer">
                 <div className="container">

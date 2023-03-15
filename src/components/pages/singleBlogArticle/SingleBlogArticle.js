@@ -1,5 +1,5 @@
+import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
-
 import UseArticles from "../../../services/UseArticles";
 
 import AppHeader from "../../appHeader/AppHeader";
@@ -15,6 +15,10 @@ const SingleBlogArticle = () => {
 
     return (
         <>
+            <Helmet>
+                <meta name="description" content={item.descr} />
+                <title>{item.title}</title>
+            </Helmet>
             <AppHeader />
             <section className="blog_article">
                 <div className="container">

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AppHeader from "../../appHeader/AppHeader";
@@ -40,6 +41,14 @@ const BlogPage = () => {
 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Our shop offers you to buy home plants to decorate your home or office.
+                    We have a wide range of plants, from small to large, from simple to exotic."
+                />
+                <title>Blog | Home Plants</title>
+            </Helmet>
             <AppHeader />
             <section className="blog">
                 <div className="container">

@@ -1,7 +1,7 @@
+import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { useShop } from '../../../store';
-import { useGoods } from '../../../store';
+import { useShop, useGoods } from '../../../store';
 
 import AppHeader from "../../appHeader/AppHeader"
 import ErrorMessage from '../../errorMessage/ErrorMessage'
@@ -14,15 +14,16 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import "./shopPage.scss"
 
 const ShopPage = () => {
-    console.log('render ShopPage')
-    const { goods, isLoading, isError, fetchGoods } = useGoods();
-    const { addToCart } = useShop();
+    // console.log('render ShopPage')
+    const { goods, isLoading, isError, fetchGoods, perPage, setPerPage } = useGoods();
+    const { addToCart, cartItems } = useShop();
+    console.log(cartItems)
+    console.log(goods)
 
     useEffect(() => {
         console.log('useEffect')
         fetchGoods();
-    // eslint-disable-next-line    
-    }, []);
+    }, [perPage]);
 
     function renderItems(arr) {
         const items = arr.map((item) => {
@@ -56,6 +57,10 @@ const ShopPage = () => {
     const items = renderItems(goods);
     return (
         <>
+            <Helmet>
+                <meta name="description" content="Shop" />
+                <title>Shop</title>
+            </Helmet>
             <AppHeader />
             <section className="shop">
                 <div className="container">
@@ -73,11 +78,10 @@ const ShopPage = () => {
                             <select
                                 name="perPage"
                                 id="perPage"
-                            // onChange={onPerPageChange}
-                            >
-                                <option value="12">12</option>
+                                onChange={(e) => setPerPage(parseInt(e.target.value))}>
+                                <option value="8">8</option>
+                                <option value="16">16</option>
                                 <option value="24">24</option>
-                                <option value="50">50</option>
                             </select>
                         </div>
                         <div className="shop-pagination-list">

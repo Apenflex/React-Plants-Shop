@@ -1,27 +1,31 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-export const useGoods = create(( set ) => ({
+export const useGoods = create((set, get) => ({
     goods: [],
     isLoading: false,
     isError: null,
+    perPage: 8,
     fetchGoods: async () => {
         set({ isLoading: true });
         new Promise((resolve) => {
             setTimeout(() => {
-                resolve(require('./services/useGoods.json'));
-            }, 1000)
+               resolve(require('./services/useGoods.json'));
+            }, 1000);
         })
             .then((data) => {
-                set({ goods: data, isLoading: false, isError: false });
+                const limitedData = data.slice(0, get().perPage);
+                set({ goods: limitedData, isLoading: false, isError: false });
                 // set({ goods: [], isLoading: false, isError: true });
             })
             .catch((err) => {
                 console.log(err);
-                set({ goods: [], isLoading: false, isError: true})
+                set({ goods: [], isLoading: false, isError: true });
             });
     },
+    setPerPage: (perPage) => { set({ perPage }) },
 }));
+
 
 export const useShop = create(persist((set, get) => ({
     cartItems: [],

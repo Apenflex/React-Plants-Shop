@@ -6,7 +6,7 @@ import shopIcon from '../../../resources/img/icons/basket-shopping-solid.svg';
 import deleteItemIcon from '../../../resources/img/icons/deleteItemIcon.svg';
 
 const ShowCart = () => {
-   console.log('render ShowCart');
+   // console.log('render ShowCart');
    const {
       cartItems,
       showCartIcon,

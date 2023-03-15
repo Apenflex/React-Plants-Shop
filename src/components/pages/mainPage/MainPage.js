@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AppHeader from '../../appHeader/AppHeader';
@@ -48,6 +49,13 @@ return items;
 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="PlantLand - Plants for your home"
+                />
+                <title>PlantLand - Plants for your home</title>
+            </Helmet>
             <AppHeader />
             <section className='plantland'>
                 <div className="container">
