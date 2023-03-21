@@ -15,15 +15,31 @@ import "./shopPage.scss"
 
 const ShopPage = () => {
     // console.log('render ShopPage')
-    const { goods, isLoading, isError, fetchGoods, perPage, setPerPage } = useGoods();
-    const { addToCart, cartItems } = useShop();
-    console.log(cartItems)
-    console.log(goods)
+    const {
+        fetchAllGoods,
+        goods,
+        renderGoods, 
+        isLoading,
+        isError, 
+        perPage, 
+        setPerPage, 
+        changePages, 
+        currentPage,
+        inputSearch,
+        setInputSearch,
+        sortBy,
+        setSortBy,} = useGoods();
+    const { addToCart } = useShop();
 
     useEffect(() => {
-        console.log('useEffect')
-        fetchGoods();
-    }, [perPage]);
+        // console.log('fetchAllGoods')
+        fetchAllGoods();
+    }, []);
+
+    useEffect(() => {
+        // console.log('useEffect fetchGoods')
+        renderGoods();
+    }, [perPage, currentPage, inputSearch, sortBy]);
 
     function renderItems(arr) {
         const items = arr.map((item) => {
@@ -64,6 +80,26 @@ const ShopPage = () => {
             <AppHeader />
             <section className="shop">
                 <div className="container">
+                    <div className="shop-searchsort">
+                        <div className="shop-search">
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                onChange={(e) => setInputSearch(e.target.value)}/>
+                        </div>
+                        <div className="shop-sort">
+                            <select
+                                name="sort"
+                                id="sort"
+                                onChange={(e) => setSortBy(e.target.value)}>
+                                <option value="default">Default</option>
+                                <option value="nameAsc">Name: A-Z</option>
+                                <option value="nameDesc">Name: Z-A</option>
+                                <option value="priceAsc">Price: low to high</option>
+                                <option value="priceDesc">Price: high to low</option>
+                            </select>
+                        </div>
+                    </div>
                     <div className="shop-wrapper">
                         {errorMessage}
                         {spinner}
@@ -85,9 +121,13 @@ const ShopPage = () => {
                             </select>
                         </div>
                         <div className="shop-pagination-list">
-                            <div className="btn_prev"><FontAwesomeIcon icon={faChevronLeft} /></div>
-                            <div className="shop-pagination-list-count">1</div>
-                            <div className="btn_next"><FontAwesomeIcon icon={faChevronRight} /></div>
+                            <div className="btn_prev" onClick={() => changePages('prev')}>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </div>
+                            <div className="shop-pagination-list-count">{currentPage}</div>
+                            <div className="btn_next" onClick={() => changePages('next')}>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -17,10 +17,9 @@ const ShowCart = () => {
       clearCart,
       onInputButtonChange,
       onInputChange,
+      calculateItemTotal,
+      calculateTotal,
    } = useShop();
-
-   const calculateItemTotal = useShop((state) => state.calculateItemTotal);
-   const calculateTotal = useShop((state) => state.calculateTotal);
 
    return (
       <>

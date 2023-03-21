@@ -2,30 +2,91 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export const useGoods = create((set, get) => ({
+    allGoods: [],
     goods: [],
     isLoading: false,
     isError: null,
     perPage: 8,
-    fetchGoods: async () => {
-        set({ isLoading: true });
-        new Promise((resolve) => {
-            setTimeout(() => {
-               resolve(require('./services/useGoods.json'));
-            }, 1000);
-        })
-            .then((data) => {
-                const limitedData = data.slice(0, get().perPage);
-                set({ goods: limitedData, isLoading: false, isError: false });
-                // set({ goods: [], isLoading: false, isError: true });
-            })
-            .catch((err) => {
-                console.log(err);
-                set({ goods: [], isLoading: false, isError: true });
+    currentPage: 1,
+    totalPages: 1,
+    startIndex: 0,
+    endIndex: 0,
+    inputSearch: '',
+    sortBy: '',
+    fetchAllGoods: async () => {
+        try {
+            set({ isLoading: true });
+            const data = await new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(require('./services/useGoods.json'));
+                }, 1000);
             });
+            set({ allGoods: data, isLoading: false, isError: false });
+        } catch (err) {
+            console.log(err);
+            set({ goods: [], isLoading: false, isError: true });
+        }
     },
-    setPerPage: (perPage) => { set({ perPage }) },
+    renderGoods: () => {
+        setTimeout(() => {
+            const { perPage, currentPage } = get();
+            const startIndex = (currentPage - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            if (get().inputSearch !== '') {
+                const filteredData = get().allGoods.filter((item) => item.name.toLowerCase().includes(get().inputSearch.toLowerCase()));
+                const totalPages = Math.ceil(filteredData.length / get().perPage);
+                set({ goods: filteredData, totalPages, isLoading: false, isError: false });
+                return;
+            }
+            if (get().sortBy !== '') {
+                const sortedData = get().allGoods.sort((a, b) => {
+                    switch (get().sortBy) {
+                        case 'default': return a.id - b.id;
+                        case 'priceAsc': return a.price - b.price;
+                        case 'priceDesc': return b.price - a.price;
+                        case 'nameAsc': return a.name.localeCompare(b.name);
+                        case 'nameDesc': return b.name.localeCompare(a.name);
+                        default: return 0;
+                    } 
+                });
+                const totalPages = Math.ceil(sortedData.length / get().perPage);
+                set({ goods: sortedData, totalPages, isLoading: false, isError: false });
+                return;
+            }
+            const limitedData = get().allGoods.slice(startIndex, endIndex);
+            const totalPages = Math.ceil(get().allGoods.length / perPage);
+            set({ goods: limitedData, totalPages, isLoading: false, isError: false, startIndex, endIndex });
+        }, 1000);
+    },
+    setPerPage: (perPage) => { set({ perPage, currentPage: 1 }) },
+    changePages: (type) => {
+        switch (type) {
+            case 'next':
+                if (get().currentPage < get().totalPages) {
+                    set({ currentPage: get().currentPage + 1 });
+                }
+                break;
+            case 'prev':
+                if (get().currentPage > 1) {
+                    set({ currentPage: get().currentPage - 1 });
+                }
+                break;
+            default:
+                break;
+        }
+    },
+    setInputSearch: (inputSearch) => { set({ inputSearch }) },
+    setSortBy: (sortBy) => {
+        switch (sortBy) {
+            case 'default': set({ sortBy }); break;
+            case 'priceAsc': set({ sortBy }); break;
+            case 'priceDesc': set({ sortBy }); break;
+            case 'nameAsc': set({ sortBy }); break;
+            case 'nameDesc': set({ sortBy }); break;
+            default: break;
+        }
+    },
 }));
-
 
 export const useShop = create(persist((set, get) => ({
     cartItems: [],
