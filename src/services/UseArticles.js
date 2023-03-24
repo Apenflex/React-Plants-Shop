@@ -1,6 +1,6 @@
-import ArticleImg1 from '../resources/img/article-img-1-min.png';
-import ArticleImg2 from '../resources/img/article-img-2-min.png';
-import ArticleImg3 from '../resources/img/article-img-3-min.png';
+import ArticleImg1 from '../resources/img/article-img-1-min-web.webp';
+import ArticleImg2 from '../resources/img/article-img-2-min-web.webp';
+import ArticleImg3 from '../resources/img/article-img-3-min-web.webp';
 
 const UseArticles = () => {
 
