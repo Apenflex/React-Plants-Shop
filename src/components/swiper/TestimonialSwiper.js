@@ -65,14 +65,14 @@ const TestimonialSwiper = () => {
         return items
     }
     const items = renderItems(sliderItemsContent)
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     return (
         <Swiper
             direction="vertical"
             slidesPerView={3}
             spaceBetween={40}
             grabCursor={true}
-            touchMoveStopPropagation={isMobile ? true : false}
+            // touchMoveStopPropagation={true}
             loop={true}
             loopedSlides={2}
             speed={1300}
@@ -91,6 +91,7 @@ const TestimonialSwiper = () => {
                     spaceBetween: 1,
                 },
             }}
+            allowTouchMove={false}
         >
             {items}
         </Swiper>
