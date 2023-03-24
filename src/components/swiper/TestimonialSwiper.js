@@ -72,6 +72,7 @@ const TestimonialSwiper = () => {
             slidesPerView={3}
             spaceBetween={40}
             grabCursor={true}
+            touchMoveStopPropagation={true}
             loop={true}
             loopedSlides={2}
             speed={1300}
