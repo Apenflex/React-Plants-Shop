@@ -5,14 +5,14 @@ import AppHeader from "../../appHeader/AppHeader"
 import AppFooter from "../../appFooter/AppFooter"
 import Form from "../../contactForm/Form"
 
-import TabIndoorImg1 from '../../../resources/img/tab_indoor-1-min.png'
-import TabIndoorImg2 from '../../../resources/img/tab_indoor-2-min.png'
-import TabIndoorImg3 from '../../../resources/img/tab_indoor-3-min.png'
-import TabIndoorImg4 from '../../../resources/img/tab_indoor-4-min.png'
-import TabOutdoorImg1 from '../../../resources/img/tab_outdoor-1-min.png'
-import TabOutdoorImg2 from '../../../resources/img/tab_outdoor-2-min.png'
-import TabOutdoorImg3 from '../../../resources/img/tab_outdoor-3-min.png'
-import TabOutdoorImg4 from '../../../resources/img/tab_outdoor-4-min.png'
+import TabIndoorImg1 from '../../../resources/img/tab_indoor-1-min.webp'
+import TabIndoorImg2 from '../../../resources/img/tab_indoor-2-min.webp'
+import TabIndoorImg3 from '../../../resources/img/tab_indoor-3-min.webp'
+import TabIndoorImg4 from '../../../resources/img/tab_indoor-4-min.webp'
+import TabOutdoorImg1 from '../../../resources/img/tab_outdoor-1-min.webp'
+import TabOutdoorImg2 from '../../../resources/img/tab_outdoor-2-min.webp'
+import TabOutdoorImg3 from '../../../resources/img/tab_outdoor-3-min.webp'
+import TabOutdoorImg4 from '../../../resources/img/tab_outdoor-4-min.webp'
 
 import './pricingPage.scss'
 

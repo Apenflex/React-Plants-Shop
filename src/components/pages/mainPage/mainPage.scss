@@ -3,7 +3,7 @@
 .plantland {
     max-height: 680px;
     padding: 130px 0 150px;
-    background: url(../../../resources/img/main-section-bg-min.png) no-repeat 40%;
+    background: url(../../../resources/img/main-section-bg-min.webp) no-repeat 40%;
     @media screen and (max-width: 768px) {
         padding: 50px 0 40px;
     }
@@ -77,7 +77,7 @@
     }
 }
 .divider {
-    background:  url(../../../resources/img/section-divider.png) no-repeat 50% / contain , rgb(13, 60, 0);
+    background:  url(../../../resources/img/section-divider.webp) no-repeat 50% / contain , rgb(13, 60, 0);
     height: 150px;
     background-image: linear-gradient(
         rgba(255, 255, 255, 0.9),
@@ -87,7 +87,7 @@
         rgba(13, 60, 0, 0.50), 
         rgba(13, 60, 0, 0.80), 
         rgba(13, 60, 0, 1)), 
-        url(../../../resources/img/section-divider.png);
+        url(../../../resources/img/section-divider.webp);
 }
 .features {
     min-height: 940px;

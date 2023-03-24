@@ -5,7 +5,7 @@ import AppHeader from '../../appHeader/AppHeader'
 import AboutPageSwiper from '../../swiper/AboutPageSwiper'
 import AppFooter from '../../appFooter/AppFooter'
 
-import AboutImg from '../../../resources/img/section_about-img-min.png'
+import AboutImg from '../../../resources/img/section_about-img-min.webp'
 import './aboutPage.scss'
 
 const AboutPage = () => {

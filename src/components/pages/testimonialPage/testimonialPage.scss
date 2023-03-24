@@ -18,12 +18,12 @@
         align-items: center;
         min-height: 310px;
         padding: 120px 0;
-        background: url(../../../resources/img/section-divider.png), rgb(13, 60, 0);
+        background: url(../../../resources/img/section-divider.webp), rgb(13, 60, 0);
         background-image: linear-gradient(
         rgba(13, 60, 0, 0.95), 
         rgba(13, 60, 0, 0.95), 
         rgba(13, 60, 0, 0.95)), 
-        url(../../../resources/img/section-divider.png);
+        url(../../../resources/img/section-divider.webp);
         @media screen and (max-width: 900px) {
             padding: 0;
         }

@@ -3,9 +3,9 @@ import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import TestimonialSliderImg1 from '../../resources/img/testimonial_feed-img1-min.png'
-import TestimonialSliderImg2 from '../../resources/img/testimonial_feed-img2-min.png'
-import TestimonialSliderImg3 from '../../resources/img/testimonial_feed-img3-min.png'
+import TestimonialSliderImg1 from '../../resources/img/testimonial_feed-img1-min.webp'
+import TestimonialSliderImg2 from '../../resources/img/testimonial_feed-img2-min.webp'
+import TestimonialSliderImg3 from '../../resources/img/testimonial_feed-img3-min.webp'
 
 SwiperCore.use([Autoplay]);
 

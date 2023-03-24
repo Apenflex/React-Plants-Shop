@@ -5,7 +5,7 @@ import AppHeader from '../../appHeader/AppHeader';
 import AppFooter from '../../appFooter/AppFooter';
 import UseArticles from '../../../services/UseArticles';
 
-import featureImg from '../../../resources/img/feature-section-bg-min.png';
+import featureImg from '../../../resources/img/feature-section-bg-min.webp';
 import featuresIcon1 from '../../../resources/img/icons/features-icon-1.svg';
 import featuresIcon2 from '../../../resources/img/icons/features-icon-2.svg';
 import featuresIcon3 from '../../../resources/img/icons/features-icon-3.svg';

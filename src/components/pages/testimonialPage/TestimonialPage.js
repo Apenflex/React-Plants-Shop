@@ -7,8 +7,8 @@ import AppFooter from '../../appFooter/AppFooter'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import TestimonialImg from '../../../resources/img/section_testimonials-img-min.png'
-import FaqImg from '../../../resources/img/section_faq-bg-min.png'
+import TestimonialImg from '../../../resources/img/section_testimonials-img-min.webp'
+import FaqImg from '../../../resources/img/section_faq-bg-min.webp'
 
 import './testimonialPage.scss'
 
